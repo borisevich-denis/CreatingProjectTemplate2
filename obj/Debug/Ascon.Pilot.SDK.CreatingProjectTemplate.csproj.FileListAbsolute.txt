@@ -1,0 +1,19 @@
+C:\Users\Денис\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
+C:\Users\Денис\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csprojResolveAssemblyReference.cache
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\TitlePage.baml
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\StageOne.g.cs
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\StageTwo.g.cs
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\StageThree.g.cs
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\CreateProject.g.cs
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\TitlePage.g.cs
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext_MarkupCompile.cache
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext_MarkupCompile.lref
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\StageOne.baml
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\StageTwo.baml
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\StageThree.baml
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\CreateProject.baml
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.g.resources
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb

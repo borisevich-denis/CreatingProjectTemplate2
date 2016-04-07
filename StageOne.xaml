@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Ascon.Pilot.SDK.CreatingProjectTemplate.StageOne"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:tools="clr-namespace:Ascon.Pilot.Theme.Tools;assembly=Ascon.Pilot.Theme"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:theme="clr-namespace:Ascon.Pilot.Theme;assembly=Ascon.Pilot.Theme"
+             xmlns:local="clr-namespace:Ascon.Pilot.SDK.CreatingProjectTemplate"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance {x:Type local:TreeViewModel}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/StandardControls.xaml"/>
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/standardcontrols/treeview.xaml"/>
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/sharedresources/sharedresources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <HierarchicalDataTemplate DataType="{x:Type local:ElementNodeViewModel}"
+                                      ItemsSource="{Binding ChildNodes}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="checkbox1" IsChecked="{Binding Check}"/>
+                    <TextBlock Text="{Binding DisplayName}" 
+                                Foreground="Black"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top"
+                                Grid.Column="1" >
+
+                    </TextBlock>
+
+                </Grid>
+            </HierarchicalDataTemplate>
+
+            <system:String x:Key="CurrentPersonFormatString">Current person {0}</system:String>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <TreeView Name="TreeView"  Margin="5,52,5,58" ItemsSource="{Binding TreeObj}" BorderThickness="1">
+
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}" d:DataContext="{d:DesignInstance ElementNodeViewModel}">
+                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+                </Style>
+
+            </TreeView.Resources>
+
+        </TreeView>
+        <Button x:Name="button1" Content="Выбрать все" HorizontalAlignment="Right" Margin="0,0,5,3" VerticalAlignment="Bottom" Width="100" Click="button1_Click"/>
+        <Button x:Name="button2" Content="Очистить все" HorizontalAlignment="Right" Margin="0,0,110,3" VerticalAlignment="Bottom" Width="100" Click="button2_Click"/>
+        <CheckBox x:Name="checkbox2" Content="Скопировать права доступа из шаблона" HorizontalAlignment="Left" Margin="5,0,0,35" VerticalAlignment="Bottom" IsChecked="{Binding CopyAccessObj}"/>
+        <TextBlock Margin="5,10,15,0" TextWrapping="Wrap" Text="Выберите необходимые элементы структуры проекта" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>
