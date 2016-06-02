@@ -3,16 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using Microsoft.Practices.Prism.Commands;
-using System.Windows.Media;
-using System.Windows.Resources;
-using System.IO;
-using System.Drawing;
-using System.Windows.Media.Imaging;
-using System.Windows.Controls;
-using SharpVectors.Converters;
-using SharpVectors.Renderers.Wpf;
-using System.Windows.Interop;
 
 namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 {
@@ -21,42 +11,37 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
     {
         private string _displayName;
         private string _type;
-        private DataObjectWrapper _source;
+        private IDataObject _source;
         private readonly IObjectsRepository _repository;
         private readonly ObservableCollection<ElementNodeViewModel> _childNodes;        
         private bool _isExpanded = true;
         private readonly string _tree;
         private bool _check;
-        private readonly ITabServiceProvider _tabServiceProvider;
         private readonly ElementNodeViewModel _parendNodes;
-        private readonly DelegateCommand _openFile;
-        private readonly DelegateCommand _openFileStorage;
-        private string nameTypeProjectFolder;
-        private string nameTypeProject;
+//        private GetDataObj getDObj;
+       // private IDictionary<string,object> _attr;
         public ElementNodeViewModel()
         {
             DisplayName = "Loading";
         }
 
-        public ElementNodeViewModel(ITabServiceProvider tabServiceProvider, ElementNodeViewModel parend, IDataObject source, IObjectsRepository repository, string tree, string _nameTypeProject, string _nameTypeProjectFolder)
+        public ElementNodeViewModel(ElementNodeViewModel parend, IDataObject source, IObjectsRepository repository, string tree)
         {
-            nameTypeProject = _nameTypeProject;
-            nameTypeProjectFolder = _nameTypeProjectFolder;
-            _tabServiceProvider = tabServiceProvider;
             _tree = tree;
             _childNodes = new ObservableCollection<ElementNodeViewModel>();
             _parendNodes = parend;
-            _source = new DataObjectWrapper(source, repository);
+            _source = source;
             _type = source.Type.Name;
             _displayName = _source.DisplayName;
             _repository = repository;
             Id = source.Id;
-            _openFile = new DelegateCommand(openFile);
-            _openFileStorage = new DelegateCommand(openFileStorage);
-            // getDObj = new GetDataObj(_repository);
+           // getDObj = new GetDataObj(_repository);
             if (tree == "_TreeStorage")
             {
-                _check = true;
+                if ((_type == "Project_folder") || (_type == "project"))
+                {
+                    _check = true;
+                }
             }
             else if (tree == "_TreeObj")
             {
@@ -68,45 +53,13 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
-        public ImageSource Icon
-        {
-            get
-            {
-                if (DisplayName == "Loading") return null;
-                if (TypeObj == "File")
-                {
-                    return Ascon.Pilot.Theme.Icons.Instance.FileIcon;
-                }
-                var sri = new StreamResourceInfo();
-                var iconByte = _repository.GetType(TypeObj).SvgIcon;
-
-                StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
-                Stream s = new MemoryStream();
-
-                Isc.Convert(new MemoryStream(iconByte), s);
-                Bitmap bm = new Bitmap(s);
-
-                return Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            }
-        }
-       
         public Guid Id
         {
             get;
             private set;
-        }     
-
-        public DelegateCommand OpenFile
-        {
-            get { return _openFile; }
         }
 
-        public DelegateCommand OpenFileStorage
-        {
-            get { return _openFileStorage; }
-        }
-
-        public DataObjectWrapper Source
+        public IDataObject Source
         {
             get{return _source;}
            // private set;
@@ -123,45 +76,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 return _source.Attributes; 
             }
-        }
-        private void openFileStorage()
-        {
-            if (TypeObj == nameTypeProject)
-            {
-              var directori = System.IO.Directory.EnumerateDirectories(_repository.GetStoragePath());
-            var s = Name(_displayName);
-            foreach (var folderName in directori)
-            {
-                if (folderName.IndexOf(s) > -1)
-                {
-                    System.Diagnostics.Process Proc = new System.Diagnostics.Process();
-                    Proc.StartInfo.FileName = "explorer";
-                    Proc.StartInfo.Arguments = (folderName + "\\"); 
-                    Proc.Start(); 
-                    return;
-                }
-            }
-            }
-        }
-
-        private string Name(string _name)
-        {
-            int i = _name.IndexOf(" - ");
-            while (i > -1)
-            {
-                _name = _name.Remove(i, 3);
-                _name = _name.Insert(i, "-");
-                i = _name.IndexOf(" - ");
-            }
-            if (_name.Length > 40)
-            {
-                return _name.Remove(39) + "~";
-            } else return _name;
-        }
-
-        private void openFile()
-        {
-            _tabServiceProvider.ShowElement(Id);
         }
 
         public bool Check
@@ -230,66 +144,57 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 if (_childNodes.Count != 0)
                     return _childNodes;
 
-                if (!treeEnd()) { }
+                if (!treeEnd())
                     _repository.SubscribeObjects(_source.Children).Subscribe(this);
              //   _childNodes.Add(new LoadingElementNodeViewModel());
                 return _childNodes;
-            }            
+            }
         }
 
         private bool treeEnd()
         { 
             if (_tree == "_TreeObj")
             {
-                if (_source != null)
-                        if (_source.ListViewChildren != null)
-                            if (_source.ListViewChildren.Count > 0) 
-                        {
-                            _childNodes.Add(new LoadingElementNodeViewModel());
-                            return false;
-                        }
-                
+                foreach (var s in _source.Children)
+                {
+                    var getDObj=new GetDataObj(_repository,s);
+                    /*getDObj.Obj = null;
+                    while (getDObj.GetDataObject(s) == null)
+                    { }*/
+                    if (getDObj.Obj != null)
+                    if (getDObj.Obj.Type.Name != "File")
+                        if (getDObj.Obj.Type.Name != "Project_folder")
+                            if (getDObj.Obj.Type.HasFiles == false)
+                                return false;
+                }
             }
             else
                 if (_tree == "_TreeStorage")
                 {
-                    if (_source != null)
-                        if (_source.PilotStorageChildren != null)
-                            if (_source.PilotStorageChildren.Count > 0) 
-                        {
+                    foreach (var s in _source.Children)
+                    {
+                        var getDObj = new GetDataObj(_repository, s);
                        /* getDObj.Obj = null;
                         while (getDObj.GetDataObject(s) == null)
                         { }*/
-                        
-                            _childNodes.Add(new LoadingElementNodeViewModel());
-                      //  if (getDObj.Obj.Type.Name == "File" || getDObj.Obj.Type.Name == "Project_folder")
+                        if (getDObj.Obj != null)
+                        if (getDObj.Obj.Type.Name == "File" || getDObj.Obj.Type.Name == "Project_folder")
                             return false;
                     }
                 }
                 else
                     if (_tree == "_TreeProject")
                     {
-                        if (_source != null)
-                        if (_source.ListViewChildren != null)
-                            if (_source.ListViewChildren.Count > 0) 
-                            if (_source.Type.Name == "projectfolder")
-                        {
-                            _childNodes.Add(new LoadingElementNodeViewModel());
-                            return false;
-                        }
-                       /* foreach (var s in _source.ListViewChildren)
+                        foreach (var s in _source.Children)
                         {
                             var getDObj = new GetDataObj(_repository, s);
                           /*  getDObj.Obj = null;
                             while (getDObj.GetDataObject(s) == null)
                             { }*/
-                        /*    if (getDObj.Obj != null)
-                                if (getDObj.Obj.Type.Name == "project" || getDObj.Obj.Type.Name == "projectfolder")
-                                {
-                                    _childNodes.Add(new LoadingElementNodeViewModel());
-                                    return false;
-                                }
-                        }*/
+                            if (getDObj.Obj != null)
+                            if (getDObj.Obj.Type.Name == "project")
+                                return false;
+                        }
                     }
             return true;
         }
@@ -313,8 +218,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
             set
             {
-                // if (_isExpanded == value)
-                  //  return;
+                if (_isExpanded == value)
+                    return;
 
                 if (value)
                 {
@@ -336,32 +241,20 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 if (value.Type.Name != "File")
                     if (value.Type.Name != "Project_folder")
-                       // if ("Shortcut_E67517F1-93F5-4756-B651-133B816D43C8" != value.Type.Name) 
-                        //1
+                        if (value.Type.HasFiles == false)//1
                         {
                             if (!_source.Children.Contains(value.Id))
                                 return;
 
                             if (IsLoading())
                                 _childNodes.Clear();
-                            if (value.Type.HasFiles == false && value.Type.Name != "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8")
-                            {
-                                if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
-                                    _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider, this, value, _repository, _tree, nameTypeProject,nameTypeProjectFolder));
-                                else
-                                {
-                                    var node = _childNodes.First(n => n.Id == value.Id);
-                                    node.Update(value);
-                                }
-                            }
+
+                            if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
+                                _childNodes.Add(new ElementNodeViewModel(this, value, _repository, _tree));
                             else
                             {
-                                if (_childNodes.ToList().Exists(n => n.Id == value.Id))
-                                {
-                                    var node = _childNodes.First(n => n.Id == value.Id);
-                                    _childNodes.Remove(node);
-                                }
-                                
+                                var node = _childNodes.First(n => n.Id == value.Id);
+                                node.Update(value);
                             }
                         }
             }
@@ -379,7 +272,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                             _childNodes.Clear();
 
                         if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
-                            _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider,this, value, _repository, _tree,nameTypeProject,nameTypeProjectFolder));
+                            _childNodes.Add(new ElementNodeViewModel(this, value, _repository, _tree));
                         else
                         {
                             var node = _childNodes.First(n => n.Id == value.Id);
@@ -390,7 +283,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 else
                     if (_tree == "_TreeProject")
                     {
-                        if (value.Type.Name == nameTypeProject || value.Type.Name == nameTypeProjectFolder)
+                        if (value.Type.Name == "project")
                         {
                             if (!_source.Children.Contains(value.Id))
                                 return;
@@ -399,7 +292,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                                 _childNodes.Clear();
 
                             if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
-                                _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider,this, value, _repository, _tree,nameTypeProject,nameTypeProjectFolder));
+                                _childNodes.Add(new ElementNodeViewModel(this, value, _repository, _tree));
                             else
                             {
                                 var node = _childNodes.First(n => n.Id == value.Id);
@@ -419,10 +312,10 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         }
 
-        
+
         public void Update(IDataObject newSource)
         {
-            _source = new DataObjectWrapper (newSource,repository);
+            _source = newSource;
             DisplayName = _source.DisplayName;
             UpdateChildNodes();
         }

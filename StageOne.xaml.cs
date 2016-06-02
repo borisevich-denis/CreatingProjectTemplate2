@@ -20,17 +20,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
     /// </summary>
     public partial class StageOne : UserControl
     {
-       
         public StageOne()
         {
             InitializeComponent();
-            
-           // cb.DataContext = itemcb;
          //   Loaded += OnLoaded;
         }
 
-        private void button1_Click()
-        {//выбрать
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
             var viewModel = (TreeViewModel)DataContext;
             foreach (var Elem in viewModel.TreeObj)
             {
@@ -48,42 +45,13 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
-        private void button2_Click()
-        {//очистить
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
             var viewModel = (TreeViewModel)DataContext;
             foreach (var Elem in viewModel.TreeObj)
             {
                 Elem.Check = false;
                 CheckTree(Elem.ChildNodes, false);
-            }
-        }
-
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            button1_Click();
-        }
-
-        private void nothing_Click(object sender, RoutedEventArgs e)
-        {
-            button2_Click();
-        }
-
-        private void collapse_Click(object sender, RoutedEventArgs e)
-        {
-            var viewModel = (TreeViewModel)DataContext;
-            foreach (var tProj in viewModel.TreeObj)
-            {
-                tProj.IsExpanded = false;
-            }
-        }
-
-        private void expand_Click(object sender, RoutedEventArgs e)
-        {
-            var viewModel = (TreeViewModel)DataContext;
-            foreach (var tProj in viewModel.TreeObj)
-            {
-                tProj.IsExpanded = true;
             }
         }
 

@@ -6,24 +6,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:theme="clr-namespace:Ascon.Pilot.Theme;assembly=Ascon.Pilot.Theme"
-             
+             xmlns:local="clr-namespace:Ascon.Pilot.SDK.CreatingProjectTemplate"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance {x:Type local:TreeViewModel}}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/StandardControls.xaml"/>                
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/StandardControls.xaml"/>
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/standardcontrols/treeview.xaml"/>
                 <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/sharedresources/sharedresources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-           
+            <HierarchicalDataTemplate DataType="{x:Type local:ElementNodeViewModel}"
+                                      ItemsSource="{Binding ChildNodes}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{Binding DisplayName}" 
+                                Foreground="Black"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top"
+                                Grid.Column="1" >
+
+                    </TextBlock>
+                </Grid>
+            </HierarchicalDataTemplate>
+
+            <system:String x:Key="CurrentPersonFormatString">Current person {0}</system:String>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-     <!--   <Image x:Name="qwe" HorizontalAlignment="Left" Height="100" Margin="10,0,0,87" VerticalAlignment="Bottom" Width="100"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="128,0,0,87" VerticalAlignment="Bottom" Width="75" Click="Button_Click_1"/>
--->
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="TreeView" Margin="5,79,0,58" ItemsSource="{Binding TreeProject}" SelectedItemChanged="TreeView_SelectedItemChanged" BorderThickness="1" Loaded="TreeView_Loaded">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}" d:DataContext="{d:DesignInstance ElementNodeViewModel}">
+                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+                </Style>
+            </TreeView.Resources>
+        </TreeView>
 
-        <StackPanel x:Name="grid" Loaded="grid_Loaded" CanVerticallyScroll="True"/>        
+        <Grid x:Name="grid" Grid.Column="1" Margin="0,0,0,58"/>
+        <Button x:Name="button1" Content="Создать проект" HorizontalAlignment="Right" Margin="0,0,5,3" VerticalAlignment="Bottom" Grid.Column="1" Click="Button_Click" IsEnabled="False"/>
+        <TextBlock x:Name="tb" Margin="5,10,15,0" TextWrapping="Wrap" Text="Выберите папку для нового проекта или существующий проект для обновления его структуры. Для нового проекта заполните атрибутную карточку." VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
     </Grid>
 </UserControl>
