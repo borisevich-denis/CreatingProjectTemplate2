@@ -7,6 +7,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:theme="clr-namespace:Ascon.Pilot.Theme;assembly=Ascon.Pilot.Theme"
              xmlns:local="clr-namespace:Ascon.Pilot.SDK.CreatingProjectTemplate"
+             
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
     d:DataContext="{d:DesignInstance {x:Type local:TreeViewModel}}">
@@ -15,7 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/StandardControls.xaml"/>
                 <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/standardcontrols/treeview.xaml"/>
-                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/sharedresources/sharedresources.xaml"/>
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/sharedresources/sharedresources.xaml"/>              
             </ResourceDictionary.MergedDictionaries>
 
 
@@ -25,16 +26,18 @@
                 <Grid x:Name="grid" Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="16" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <CheckBox x:Name="Cb" IsChecked="{Binding Check}"/>
+                    <Image Source="{Binding Icon}" Height="16" Width="16" Grid.Column="1"/>
                     <TextBlock Text="{Binding DisplayName}" 
                                 Foreground="Black"
                                 TextTrimming="CharacterEllipsis"
                                 TextWrapping="Wrap" 
                                 HorizontalAlignment="Left" 
                                 VerticalAlignment="Top"
-                                Grid.Column="1" >
+                                Grid.Column="2" Margin="2,0,0,0" >
                         
                     </TextBlock>
                     
@@ -49,7 +52,7 @@
     
   
                 <Grid>
-                    <TreeView x:Name="TreeView" Margin="5,52,5,58" ItemsSource="{Binding TreeStorage}" BorderThickness="1">
+                    <TreeView x:Name="TreeView" Margin="0,25,0,0" ItemsSource="{Binding TreeStorage}" BorderThickness="1" Foreground="Black" BorderBrush="{x:Null}">
                         <TreeView.Resources>
                             <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}" d:DataContext="{d:DesignInstance ElementNodeViewModel}">
                                 <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
@@ -57,14 +60,32 @@
                         </TreeView.Resources>
             
                     </TreeView>
-                    <Button x:Name="button1" Content="Выбрать все" HorizontalAlignment="Right" Margin="0,0,5,3" VerticalAlignment="Bottom" Width="100" Click="button1_Click"/>
-                    <Button x:Name="button2" Content="Очистить все" HorizontalAlignment="Right" Margin="0,0,110,3" VerticalAlignment="Bottom" Width="100" Click="button2_Click"/>
-                    <CheckBox Content="Скопировать права доступа из шаблона" HorizontalAlignment="Left" Margin="5,0,0,35" VerticalAlignment="Bottom" IsChecked="{Binding CopyAccessStorage}"/>
-                    <Button x:Name="button3" Content="Очистить файлы" HorizontalAlignment="Right" Margin="0,0,335,3" VerticalAlignment="Bottom" Width="115" Click="button3_Click"/>
-                    <Button x:Name="button4" Content="Выбрать файлы" HorizontalAlignment="Right" Margin="0,0,215,3" VerticalAlignment="Bottom" Width="115" Click="button4_Click"/>
-        <TextBlock Margin="5,10,15,0" TextWrapping="Wrap" Text="Выберите необходимые папки и файлы" VerticalAlignment="Top"/>
+        
+        <CheckBox Content="Скопировать права доступа для выбранных папок и файлов" Margin="0" VerticalAlignment="Top" IsChecked="{Binding CopyAccessStorage}" Foreground="Black" HorizontalAlignment="Right" />
 
-
+        <StackPanel Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
+            Выбрать:
+        </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
+        <Hyperlink Name="All" Click="All_Click">всё</Hyperlink>
+        </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
+            <Hyperlink Name="nothing" Click="nothing_Click">ничего</Hyperlink>
+        </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,12,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
+            <Hyperlink Name="folder" Click="folder_Click">только папки</Hyperlink>
+        </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}" Height="15">
+            Структура папок:
+        </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
+            <Hyperlink Name="collapse" Click="collapse_Click">свернуть</Hyperlink>
+        </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
+            <Hyperlink Name="expand" Click="expand_Click">развернуть</Hyperlink>
+        </TextBlock>
+        </StackPanel>
     </Grid>
 
           
