@@ -12,18 +12,19 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/StandardControls.xaml"/>                
+                <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/StandardControls.xaml"/>
                 <tools:SharedResourceDictionary Source="/Ascon.Pilot.Theme;component/Themes/sharedresources/sharedresources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-           
+
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-     <!--   <Image x:Name="qwe" HorizontalAlignment="Left" Height="100" Margin="10,0,0,87" VerticalAlignment="Bottom" Width="100"/>
+        <!--   <Image x:Name="qwe" HorizontalAlignment="Left" Height="100" Margin="10,0,0,87" VerticalAlignment="Bottom" Width="100"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="128,0,0,87" VerticalAlignment="Bottom" Width="75" Click="Button_Click_1"/>
 -->
-
-        <StackPanel x:Name="grid" Loaded="grid_Loaded" CanVerticallyScroll="True"/>        
+       <ScrollViewer VerticalScrollBarVisibility="Auto" >
+            <StackPanel x:Name="grid" Loaded="grid_Loaded" />
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

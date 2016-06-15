@@ -41,9 +41,9 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     
                         if (s.CreateUpProject(true))
                         {
-                            DialogWindow dw = new DialogWindow();
+                            DialogWindow dw = new DialogWindow();//+++
                             dw.Title = "Создание структуры проекта завершено";
-                            dw.Content = new ResultCreation() { DataContext = s };                          
+                            dw.Content = new ResultCreation() { DataContext = s };   //+++                       
                             dw.Show();
                             ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
                         }

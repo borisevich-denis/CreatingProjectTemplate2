@@ -52,9 +52,9 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             image.Source = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()); ;
 */
             //name.Text = DisplayName;
-            var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon3.ToBitmap();
+            var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon3.ToBitmap();//+++
             ButtonEdit.RightImageSource = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-
+            b.Dispose();
         }
 
         private void ButtonEdit_TextChanged(object sender, TextChangedEventArgs e)

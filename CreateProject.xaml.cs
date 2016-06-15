@@ -53,14 +53,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     if (s.CreateUpProject(false))
                     {
 
-                        DialogWindow dw = new DialogWindow();
+                        DialogWindow dw = new DialogWindow();//+++
                         dw.Title = "Создание структуры проекта завершено";
-                        dw.Content = new ResultCreation() { DataContext = s };
+                        dw.Content = new ResultCreation() { DataContext = s };//+++
                         dw.Show();
 
                         ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
                     }
-                    else MessageBox.Show("Заполнены не все обязательные атрибуты");
+                    else MessageBox.Show("Заполнены не все обязательные атрибуты");                    
                 }
 
                 if (TC1.Items.Count - 1 > TC1.SelectedIndex)
@@ -146,6 +146,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ((TreeViewModel)DataContext).Dispose();
             ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
         }
 
@@ -159,7 +160,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (s.CreateUpProject(false))
             {
 
-                DialogWindow dw = new DialogWindow();
+                DialogWindow dw = new DialogWindow();//+++
                 dw.Title = "Создание структуры проекта завершено";
                 dw.Content = new ResultCreation() { DataContext = s };
                 dw.Show();

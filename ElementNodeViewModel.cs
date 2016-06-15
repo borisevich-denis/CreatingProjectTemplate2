@@ -17,7 +17,7 @@ using System.Windows.Interop;
 namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 {
 
-    class ElementNodeViewModel : PropertyChangedBase, IObserver<IDataObject>
+    class ElementNodeViewModel : PropertyChangedBase, IObserver<IDataObject>, IDisposable
     {
         private string _displayName;
         private string _type;
@@ -33,6 +33,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private readonly DelegateCommand _openFileStorage;
         private string nameTypeProjectFolder;
         private string nameTypeProject;
+        private ImageSource _icon;
         public ElementNodeViewModel()
         {
             DisplayName = "Loading";
@@ -53,6 +54,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             Id = source.Id;
             _openFile = new DelegateCommand(openFile);
             _openFileStorage = new DelegateCommand(openFileStorage);
+            GetIcon();
             // getDObj = new GetDataObj(_repository);
             if (tree == "_TreeStorage")
             {
@@ -68,25 +70,42 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
+        public void Dispose()
+        {      
+            foreach (var obj in _childNodes)
+            {
+                obj.Dispose();
+            }
+        }
+
+        private void GetIcon()
+        {
+            if (DisplayName == "Loading") return;
+            if (TypeObj == "File")
+            {
+                _icon= Ascon.Pilot.Theme.Icons.Instance.FileIcon;
+            }
+            //  var sri = new StreamResourceInfo();//+++
+            var iconByte = _repository.GetType(TypeObj).SvgIcon;//+++
+
+            StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
+            Bitmap bm = null;
+            using (Stream s = new MemoryStream())
+            {
+                Isc.Convert(new MemoryStream(iconByte), s);
+                bm = new Bitmap(s);
+                Isc.Dispose();
+                _icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                //bm.Dispose();
+            }
+        }
+
         public ImageSource Icon
         {
             get
             {
-                if (DisplayName == "Loading") return null;
-                if (TypeObj == "File")
-                {
-                    return Ascon.Pilot.Theme.Icons.Instance.FileIcon;
-                }
-                var sri = new StreamResourceInfo();
-                var iconByte = _repository.GetType(TypeObj).SvgIcon;
-
-                StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
-                Stream s = new MemoryStream();
-
-                Isc.Convert(new MemoryStream(iconByte), s);
-                Bitmap bm = new Bitmap(s);
-
-                return Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                GetIcon();
+                return _icon;
             }
         }
        
@@ -128,19 +147,19 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             if (TypeObj == nameTypeProject)
             {
-              var directori = System.IO.Directory.EnumerateDirectories(_repository.GetStoragePath());
-            var s = Name(_displayName);
-            foreach (var folderName in directori)
-            {
-                if (folderName.IndexOf(s) > -1)
+                var directori = System.IO.Directory.EnumerateDirectories(_repository.GetStoragePath());//+++
+                var s = Name(_displayName);//+++
+                foreach (var folderName in directori)
                 {
-                    System.Diagnostics.Process Proc = new System.Diagnostics.Process();
-                    Proc.StartInfo.FileName = "explorer";
-                    Proc.StartInfo.Arguments = (folderName + "\\"); 
-                    Proc.Start(); 
-                    return;
-                }
-            }
+                    if (folderName.IndexOf(s) > -1)
+                    {
+                        System.Diagnostics.Process Proc = new System.Diagnostics.Process();
+                        Proc.StartInfo.FileName = "explorer";
+                        Proc.StartInfo.Arguments = (folderName + "\\");
+                        Proc.Start();
+                        return;
+                    }
+                }                
             }
         }
 
@@ -450,13 +469,13 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (IsLoading())
                 return;
 
-            var childIdsToLoad = new List<Guid>();
+            var childIdsToLoad = new List<Guid>();//+++
             foreach (var childId in _source.Children)
             {
                 if (_childNodes.FirstOrDefault(x => x.Id == childId) == null)
                     childIdsToLoad.Add(childId);
             }
-
+            
             _repository.SubscribeObjects(childIdsToLoad).Subscribe(this);
         }
 

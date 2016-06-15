@@ -34,6 +34,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public string Attr { get; set; }
         public string name { get; set; }
         public List<string> Items { get; set; }
+        public ObservableCollection<ItemCB> _ItemsCB { get; set; }
        // public bool IsEditable { get; set; }
         public Content()
         {
@@ -142,7 +143,9 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         if (content[i].combobox != null)
                         {
                             content[i].combobox.SelectionChanged += SelectionChanged;
-                            content[i].combobox.Loaded += combobox_Loaded;
+                          //  content[i].combobox.Loaded += combobox_Loaded;
+                            content[i].combobox.DropDownOpened += combobox_DropDownOpened;
+                            content[i].combobox.DropDownClosed += combobox_DropDownClosed;
 
                             grid.Children.Add(content[i].combobox);
                         }
@@ -174,11 +177,62 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
+        void combobox_DropDownClosed(object sender, EventArgs e)
+        {
+            var attrItems = new Dictionary<string, object>();
+            if (content.ToList().Exists(n => n.combobox == sender))
+            {
+                var i = content.ToList().FindIndex(n => n.combobox == sender);
+                if (content[i].Items == null && content[i]._ItemsCB == null)
+                {
+                    var _index = content[i].combobox.SelectedIndex;                  
+                    content[i]._ItemsCB = new ObservableCollection<ItemCB>(((TreeViewModel)DataContext).CBItems);
+                    content[i].combobox.ItemsSource = content[i]._ItemsCB;
+                    content[i].combobox.SelectedIndex = _index;
+                }
+            }
+        }
+
+        void combobox_DropDownOpened(object sender, EventArgs e)
+        {
+            var attrItems = new Dictionary<string, object>();
+            if (content.ToList().Exists(n => n.combobox == sender))
+            {
+
+                var i = content.ToList().FindIndex(n => n.combobox == sender);
+                if (content[i].Items != null)
+                {
+                    if (content[i].Items.Count > 0)
+                    {
+                        content[i].combobox.ItemsSource = content[i].Items;
+                    }
+                    else if (content[i].Attr != "" && content[i].Key != "")
+                    {
+                        GetItemsCB(content[i].Attr, content[i].Key);
+                        // var _items = new List<string>();
+                        // foreach (var item in items) { _items.Add(item.DispName); }
+                        content[i].combobox.ItemsSource = ((TreeViewModel)DataContext).CBItems;
+                    }
+                }
+                else if (content[i].Attr != "" && content[i].Key != "" && content[i]._ItemsCB == null)
+                {
+                    GetItemsCB(content[i].Attr, content[i].Key);
+                    // var _items = new List<string>();
+                    // foreach (var item in items) { _items.Add(item.DispName); }
+                    content[i].combobox.ItemsSource = ((TreeViewModel)DataContext).CBItems;
+                }
+                else if (content[i]._ItemsCB != null)
+                {
+                    content[i].combobox.ItemsSource = content[i]._ItemsCB;
+                }
+            }
+        }
+
        
 
    /*    */
 
-        private void combobox_Loaded(object sender, RoutedEventArgs e)
+       /* private void combobox_Loaded(object sender, RoutedEventArgs e)
         {
              var attrItems = new Dictionary<string, object>();
              if (content.ToList().Exists(n => n.combobox == sender))
@@ -196,23 +250,23 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                          var items = GetItemsCB(content[i].Attr, content[i].Key);
                          // var _items = new List<string>();
                          // foreach (var item in items) { _items.Add(item.DispName); }
-                         content[i].combobox.ItemsSource = items;
+                         content[i].combobox.ItemsSource =  ((TreeViewModel)DataContext).CBItems;
                      }
                  } else if (content[i].Attr != "" && content[i].Key != "")
                  {
                      var items = GetItemsCB(content[i].Attr, content[i].Key);
                      // var _items = new List<string>();
                      // foreach (var item in items) { _items.Add(item.DispName); }
-                     content[i].combobox.ItemsSource = items;
+                     content[i].combobox.ItemsSource = ((TreeViewModel)DataContext).CBItems;
                  }
                  
              }
-        }
+        }*/
 
         private List<string> GetItemsCB(string attr, string key)
         {
-           var items = ((TreeViewModel)DataContext).GetItemsCB(attr,key);
-           var AttrItems = new List<string>();
+            var items = ((TreeViewModel)DataContext).GetItemsCB(attr, key);
+            var AttrItems = new List<string>();
            if (items != null)
            foreach (var item in items)
            {
@@ -233,12 +287,12 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         }
 
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
+        {
             var attrItems = new Dictionary<string, object>();
             if (content.ToList().Exists(n => n.combobox == sender))
             {
                 var i = content.ToList().FindIndex(n => n.combobox == sender);               
-                
+
                 var index = content[i].Title.Inlines.ToList().Exists(n => ((Run)n).Text == "* ");
                 if (!index)
                 {
@@ -251,21 +305,28 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     var _attr = AttributeProject.First(b => b.Title == text);
                     attrItems.Add(_attr.Name, content[i].combobox.Text);
                 }
-
-
+                if (content[i].Items == null && content[i]._ItemsCB==null)
+                {
+                    var _index = content[i].combobox.SelectedIndex;// Text;
+                    //  content[i].combobox.ItemsSource = null;
+                    content[i]._ItemsCB = new ObservableCollection<ItemCB>(((TreeViewModel)DataContext).CBItems);
+                 //   foreach (var _item in ((TreeViewModel)DataContext).CBItems) { content[i].Items.Add(_item.DispName); }
+                    content[i].combobox.ItemsSource = content[i]._ItemsCB;
+                    content[i].combobox.SelectedIndex = _index;
+                }
             }
             s.AttributesNewProject = attrItems;
             if (s.AllObligatoryAttr(s.AttributesNewProject))
             {
                 s.getAllAttributes = true;
             } else s.getAllAttributes = false;
+           
         }
-
-        
+                
 
         private void TextChanged(object sender, TextChangedEventArgs e)
-        { 
-            var attrItems=new Dictionary<string, object>() ;
+        {
+            var attrItems = new Dictionary<string, object>();
             if (content.ToList().Exists(n => n.textBox == sender))
             {
                 var i = content.ToList().FindIndex(n => n.textBox == sender);
@@ -386,7 +447,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                                      {
                                          content[content.Count - 1].Key = GetConfig(config, "Source");
                                          content[content.Count - 1].Attr = GetConfig(config, "StringFormat");
-                                         content[content.Count - 1].combobox = new ComboBox() { Margin = new Thickness(0, 0, 0, 10) };
+                                         content[content.Count - 1].combobox = new ComboBox() { Margin = new Thickness(0, 0, 0, 10), IsSynchronizedWithCurrentItem = true };
                                      }
                                      if (config.IndexOf("Enum") > -1)
                                      {
@@ -485,7 +546,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             if (content.Count == 0)
             {
-                s = ((TreeViewModel)((CreateProject)((PureWindow)((UserControl)((Grid)((TabControl)((TabItem)((UserControl)((Grid)((StackPanel)sender).Parent).Parent).Parent).Parent).Parent).Parent).Parent).Content).DataContext);
+                s = ((TreeViewModel)((CreateProject)((PureWindow)((UserControl)((Grid)((TabControl)((TabItem)((UserControl)((Grid)((ScrollViewer)((StackPanel)sender).Parent).Parent).Parent).Parent).Parent).Parent).Parent).Parent).Content).DataContext);
                 if (AttributeProject == null)
                     AttributeProject = s.AttributeProject;
                 
@@ -503,7 +564,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (content.ToList().Exists(n => n.button == sender))
             {
                 var i = content.ToList().FindIndex(n => n.button == sender);
-                var items = GetItemsCB(content[i].Attr, content[i].Key);
+              //  var items = GetItemsCB(content[i].Attr, content[i].Key);
 
                 content[i].textBox.Text = ((TreeViewModel)DataContext).openDialog(content[i].Attr, content[i].Key);
                 /* string atr = "";

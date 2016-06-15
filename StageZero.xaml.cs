@@ -34,7 +34,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (s1.Content is CreateProject) s = ((TreeViewModel)((CreateProject)s1.Content).DataContext);
             else if (s1.Content is CreateProjectStructure) s = ((TreeViewModel)((CreateProjectStructure)s1.Content).DataContext);
 
-            var selectedObject = TreeView.SelectedValue as ElementNodeViewModel;
+            var selectedObject = TreeView.SelectedValue as ElementNodeViewModel;//+++
             if (selectedObject.TypeObj == s.NameTypeProject)
             {
                 

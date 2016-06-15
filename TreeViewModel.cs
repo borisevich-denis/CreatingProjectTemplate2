@@ -13,7 +13,7 @@ using System.Windows.Interop;
 
 namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 {
-    class TreeViewModel : PropertyChangedBase, IObserver<IDataObject>
+    class TreeViewModel : PropertyChangedBase, IObserver<IDataObject>, IDisposable
     {
         private readonly IObjectsRepository _repository;
         private readonly IObjectModifier _modifier;
@@ -47,7 +47,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private readonly ObservableCollection<Result> _resultCreation;
         private Catalog opDialog;
 
-        private string _resultOpenDialog;
+        //private string _resultOpenDialog;
         private bool _getAllAttributes;
 
         private DataObjectWrapper _baseElement;
@@ -56,8 +56,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private IDataObject _parent;
         private readonly IPerson _currentPerson;
         private bool modifier = false;
-        private ElementNodeViewModel _selectedTree = null;
+        //private ElementNodeViewModel _selectedTree = null;
         private string _TitleSelect = "не выбран";
+
+        private Guid gCBParent;
+        private DataObjectWrapper CBParent;
+        private ObservableCollection<ItemCB> _CBItems;
+        private string CBAttr;
+
 
         private Dictionary<string, object> attributes = new Dictionary<string, object>();
         //private GetDataObj getDObj;
@@ -74,6 +80,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             _selectTreeObj = new ObservableCollection<ElementNodeViewModel>();
             _selectTreeStorage = new ObservableCollection<ElementNodeViewModel>();
             _resultCreation = new ObservableCollection<Result>();
+            _CBItems = new ObservableCollection<ItemCB>();
             _personalSettings = personalSettings;
             _pilotDialogService = pilotDialogService;
             _repository = repository;
@@ -263,6 +270,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 _repository.SubscribeObjects(value.Children).Subscribe(this);
 
             }
+
             if (ParentObjectOpenDialog != null)
                 if (ParentObjectOpenDialog.Children.ToList().Exists(n => n == value.Id))
                 {
@@ -285,13 +293,49 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         }
                         else
                         {
-                           
+
                             _itemsCatalog.Insert(_itemsCatalog.Count - 1, new ElementCatalogModel(Ascon.Pilot.Theme.Icons.Instance.FileIcon, value.DisplayName, value.Id, attrItem, this));
-                            _itemsCatalog=new ObservableCollection<ElementCatalogModel>(_itemsCatalog.OrderBy(n => n.Sort));
+                            _itemsCatalog = new ObservableCollection<ElementCatalogModel>(_itemsCatalog.OrderBy(n => n.Sort));
                             NotifyPropertyChanged("ItemsCatalog");
                         }
                     }
                 }
+
+            if (gCBParent == value.Id)
+            {
+                CBParent = new DataObjectWrapper(value, _repository);
+                _repository.SubscribeObjects(value.Children).Subscribe(this);
+                return;
+            }
+            if (CBParent != null)
+                if (CBParent.Children.ToList().Exists(n => n == value.Id))
+                {
+                    var _attr = attrToList(CBAttr);
+                    ItemCB item = new ItemCB() { attr = new Dictionary<string, string>() };
+                    foreach (var atr in _attr)
+                    {
+                        if (value.Attributes.ToList().Exists(n => n.Key == atr))
+                        {
+                            var obj = value.Attributes.ToList().Find(n => n.Key == atr);
+                            item.attr.Add(obj.Key, obj.Value.ToString());
+                        }
+                    }
+                    item.DispName = TextToCombobox(item);
+                    if (_CBItems.ToList().Exists(n => n.Id == value.Id))
+                    {
+                        var itemC = _CBItems.First(n => n.Id == value.Id);
+                        itemC.Update(value.DisplayName);
+                    }
+                    else
+                    {
+                        _CBItems.Add(item);
+                       // _CBItems = new ObservableCollection<ItemCB>(_CBItems.OrderBy(n => n.DispName));
+                        //NotifyPropertyChanged("CBItems");
+                    }
+                    return;
+                }
+
+           
 
             if (SystemObjectIds.RootObjectId == value.Id)
             {
@@ -366,9 +410,38 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
 
 
+        private string TextToCombobox(ItemCB item) // переделать для комбобокса
+        {
+            var AttrItems = "";
+
+            var attr = "";
+            foreach (var atr in item.attr)
+            {
+                if (attr.Length > 0)
+                {
+                    attr += " - ";
+                }
+                attr += atr.Value;
+
+            } AttrItems += attr;
 
 
+            return AttrItems;
+        }
 
+        public ObservableCollection<ItemCB> CBItems
+        {
+            get
+            {
+                return _CBItems;
+            }
+            set
+            {
+                _CBItems = new ObservableCollection<ItemCB>(value.OrderBy(n => n.DispName));
+                NotifyPropertyChanged("CBItems");
+            }
+
+        }
         public bool SelectElementCatalogModel
         {
             get { return _SelectElementCatalogModel; }
@@ -419,7 +492,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             dw.Title = "Справочник";
             dw.DataContext = this;
             dw.ShowDialog();
-
+            
             return ResultCatalog();
 
             //  System.Windows.MessageBox.Show("");
@@ -516,7 +589,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon3.ToBitmap();
             _itemsCatalog.Add(new ElementCatalogModel(Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()), "Результаты поиска", new ObservableCollection<ElementCatalogModel>() { new SearchElementCatalogModel() }, this));
 
-            IDataObject objParent = null;
+           // IDataObject objParent = null;
             gParentObjectOpenDialog = new Guid(key);
             attributesOpenDialog = attrToList(attr);
            /* loader.Load(gParentObjectOpenDialog, o => { objParent = o; });
@@ -531,27 +604,30 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             //return _displayName;
         }
 
-        public string ResultOpenDialog
+        /*public string ResultOpenDialog
         {
             get
             {
                 return _resultOpenDialog;
             }
-        }
+        }*/
         public List<ItemCB> GetItemsCB(string attr, string key)
         {
             var items = new List<ItemCB>();
             
 
-            IDataObject objParent = null;
+           // IDataObject objParent = null;
             //  while (objParent == null)
             // {
-            var g = new Guid(key);
-            loader.Load(g, o => { objParent = o; });
-
+            _CBItems.Clear();
+            gCBParent = new Guid(key);
+            CBAttr=attr;
+            _repository.SubscribeObjects(new [] {gCBParent}).Subscribe(this);
+           // loader.Load(g, o => { objParent = o; });
+            
             //   }
 
-            var _attr = attrToList(attr);
+          /*  var _attr = attrToList(attr);
             if (objParent == null) { return null; }
             foreach (var child in objParent.Children)
             {
@@ -576,7 +652,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         items.Add(item);
                     }
                 }
-            }
+            }*/
             return items;
         }
         private List<string> attrToList(string attr)
@@ -728,6 +804,38 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             modifier = true;
             if (CreateHidden) { builder.MakeSecret(); }
             return builder.DataObject;
+        }
+
+        public void Dispose()
+        {
+            foreach (var obj in _itemsCatalog)
+            {
+        //        obj.Dispose();
+            }
+            foreach (var obj in _searchItemsCatalog)
+            {
+        //        obj.Dispose();
+            }
+            foreach (var obj in _TreeObj)
+            {
+                obj.Dispose();
+            }
+            foreach (var obj in _TreeProject)
+            {
+                obj.Dispose();
+            }
+            foreach (var obj in _TreeStorage)
+            {
+                obj.Dispose();
+            }
+            foreach (var obj in _selectTreeObj)
+            {
+                obj.Dispose();
+            }
+            foreach (var obj in _selectTreeStorage)
+            {
+                obj.Dispose();
+            }  
         }
 
         private bool comparisonObject(ObservableCollection<ElementNodeViewModel> _object, ElementNodeViewModel _object2, out ElementNodeViewModel obj2)

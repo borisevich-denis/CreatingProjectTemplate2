@@ -18,7 +18,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public string Text { get; set; }
         public Result(IType typeObj, string text)
         {
-            if (typeObj != null) 
+            if (typeObj != null)
             {
                 if (typeObj.Name == "File")
                 {
@@ -27,16 +27,20 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     return;
                 }
                 StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
-                Stream s = new MemoryStream();
 
-                Isc.Convert(new MemoryStream(typeObj.SvgIcon), s);
-                Bitmap bm = new Bitmap(s);
-
-                Icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Bitmap bm = null;
+                using (Stream s = new MemoryStream())
+                {
+                    Isc.Convert(new MemoryStream(typeObj.SvgIcon), s);
+                    bm = new Bitmap(s);
+                    Isc.Dispose();
+                    Icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    //bm.Dispose();
+                }
             }
-            else 
-            { 
-                Icon = null; 
+            else
+            {
+                Icon = null;
             }
             Text = text;
         }
