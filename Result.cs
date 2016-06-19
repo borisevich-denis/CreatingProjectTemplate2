@@ -11,10 +11,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Ascon.Pilot.SDK.CreatingProjectTemplate
-{
+{  
+
     class Result 
     {
-        public ImageSource Icon { get; set; }
+        private ImageSource _Icon;
+
+        public ImageSource Icon
+        {
+            get
+            {
+                return _Icon;
+            }
+            set
+            {
+                _Icon = value;
+            }
+        }
         public string Text { get; set; }
         public Result(IType typeObj, string text)
         {
@@ -26,11 +39,13 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     Text = text;
                     return;
                 }
-                StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
 
-                Bitmap bm = null;
                 using (Stream s = new MemoryStream())
                 {
+
+                    StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
+
+                    Bitmap bm = null;
                     Isc.Convert(new MemoryStream(typeObj.SvgIcon), s);
                     bm = new Bitmap(s);
                     Isc.Dispose();

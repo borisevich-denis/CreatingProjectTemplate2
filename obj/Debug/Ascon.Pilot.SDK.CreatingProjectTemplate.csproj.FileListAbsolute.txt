@@ -24,7 +24,4 @@ C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingPro
 C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csproj.GenerateResource.Cache
 C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Catalog.baml
 C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Catalog.g.cs
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csprojResolveAssemblyReference.cache
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext_MarkupCompile.cache
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
+C:\Users\Денис\Desktop\sdk_16.0.4.22921\Samples\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csprojResolveAssemblyReference.cache

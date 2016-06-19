@@ -34,6 +34,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private string nameTypeProjectFolder;
         private string nameTypeProject;
         private ImageSource _icon;
+        private static byte[] iconByte;
         public ElementNodeViewModel()
         {
             DisplayName = "Loading";
@@ -41,6 +42,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         public ElementNodeViewModel(ITabServiceProvider tabServiceProvider, ElementNodeViewModel parend, IDataObject source, IObjectsRepository repository, string tree, string _nameTypeProject, string _nameTypeProjectFolder)
         {
+           
             nameTypeProject = _nameTypeProject;
             nameTypeProjectFolder = _nameTypeProjectFolder;
             _tabServiceProvider = tabServiceProvider;
@@ -54,6 +56,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             Id = source.Id;
             _openFile = new DelegateCommand(openFile);
             _openFileStorage = new DelegateCommand(openFileStorage);
+            iconByte = repository.GetType(_type).SvgIcon;//+++
             GetIcon();
             // getDObj = new GetDataObj(_repository);
             if (tree == "_TreeStorage")
@@ -71,32 +74,37 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         }
 
         public void Dispose()
-        {      
+        {
+            _icon=null;
+            GC.Collect();
             foreach (var obj in _childNodes)
             {
                 obj.Dispose();
             }
         }
 
+
+
         private void GetIcon()
         {
-            if (DisplayName == "Loading") return;
-            if (TypeObj == "File")
+            if (_displayName == "Loading") return;
+            if (_type == "File")
             {
-                _icon= Ascon.Pilot.Theme.Icons.Instance.FileIcon;
+                _icon = Ascon.Pilot.Theme.Icons.Instance.FileIcon;
             }
             //  var sri = new StreamResourceInfo();//+++
-            var iconByte = _repository.GetType(TypeObj).SvgIcon;//+++
-
-            StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
-            Bitmap bm = null;
-            using (Stream s = new MemoryStream())
+            if (_icon == null)
             {
-                Isc.Convert(new MemoryStream(iconByte), s);
-                bm = new Bitmap(s);
-                Isc.Dispose();
-                _icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-                //bm.Dispose();
+                using (Stream s = new MemoryStream())
+                {
+                    StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
+                    Bitmap bm = null;
+                    Isc.Convert(new MemoryStream(iconByte), s);
+                    bm = new Bitmap(s);
+                    Isc.Dispose();
+                    _icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    //bm.Dispose();
+                }
             }
         }
 

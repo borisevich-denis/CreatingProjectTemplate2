@@ -41,6 +41,11 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             ((DialogWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
         }
 
+        private void rbt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((ListBox)sender).ScrollIntoView(((ListBox)sender).SelectedItem);
+        }
+
        
 
     }

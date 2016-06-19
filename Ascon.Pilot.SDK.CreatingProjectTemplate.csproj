@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\</OutputPath>
+    <OutputPath>..\..\..\..\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,37 +33,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ascon.Pilot.SDK">
-      <HintPath>packages\Ascon.Pilot.SDK.16.0.14.0-unstable\lib\net40-Client\Ascon.Pilot.SDK.dll</HintPath>
+    <Reference Include="Ascon.Pilot.SDK, Version=16.0.14.24627, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ascon.Pilot.SDK.16.0.14.0-unstable\lib\net40-Client\Ascon.Pilot.SDK.dll</HintPath>
     </Reference>
-    <Reference Include="Ascon.Pilot.Theme">
-      <HintPath>packages\Ascon.Pilot.SDK.16.0.14.0-unstable\lib\net40-Client\Ascon.Pilot.Theme.dll</HintPath>
+    <Reference Include="Ascon.Pilot.Theme, Version=16.0.14.24627, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ascon.Pilot.SDK.16.0.14.0-unstable\lib\net40-Client\Ascon.Pilot.Theme.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SharpVectors.Converters">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Converters.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Converters.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Core">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Core.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Core.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Css">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Css.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Css.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Dom">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Dom.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Dom.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Model">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Model.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Model.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Rendering.Gdi">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Rendering.Gdi.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Rendering.Gdi.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Rendering.Wpf">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Rendering.Wpf.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Rendering.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="SharpVectors.Runtime">
-      <HintPath>packages\SharpVectors.1.0\lib\net20\SharpVectors.Runtime.dll</HintPath>
+      <HintPath>..\packages\SharpVectors.1.0\lib\net20\SharpVectors.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

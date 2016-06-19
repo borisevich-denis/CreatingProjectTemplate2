@@ -30,13 +30,13 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             //_selection = selection;
             InitializeComponent();
-          //  nameTypeProject = _nameTypeProject;
-         /*   var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon1.ToBitmap();
-            ImageNext.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(),IntPtr.Zero,Int32Rect.Empty,BitmapSizeOptions.FromEmptyOptions());
-            b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon2.ToBitmap();
-            ImageBack.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(),IntPtr.Zero,Int32Rect.Empty,BitmapSizeOptions.FromEmptyOptions());
-            textBack.Text = "Назад";
-            textNext.Text = "Далее";*/
+            //  nameTypeProject = _nameTypeProject;
+            /*   var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon1.ToBitmap();
+               ImageNext.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(),IntPtr.Zero,Int32Rect.Empty,BitmapSizeOptions.FromEmptyOptions());
+               b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon2.ToBitmap();
+               ImageBack.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(),IntPtr.Zero,Int32Rect.Empty,BitmapSizeOptions.FromEmptyOptions());
+               textBack.Text = "Назад";
+               textNext.Text = "Далее";*/
             //_win = win;
         }
 
@@ -48,19 +48,16 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 {
                     // создание
 
-                    var s = ((TreeViewModel)((CreateProject)((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Content).DataContext);
+                    var s = (TreeViewModel)DataContext;
+                    DialogWindow dw = new DialogWindow();//+++
+                    dw.Title = "Создание структуры проекта";
+                    dw.Content = new ResultCreation() { DataContext = s };//+++
+                    dw.Show();
+                    s.CreateUpProject(false);
+                   // ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+                    ((PureWindow)Parent).Close();
+                    ((TreeViewModel)DataContext).Dispose();
 
-                    if (s.CreateUpProject(false))
-                    {
-
-                        DialogWindow dw = new DialogWindow();//+++
-                        dw.Title = "Создание структуры проекта завершено";
-                        dw.Content = new ResultCreation() { DataContext = s };//+++
-                        dw.Show();
-
-                        ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
-                    }
-                    else MessageBox.Show("Заполнены не все обязательные атрибуты");                    
                 }
 
                 if (TC1.Items.Count - 1 > TC1.SelectedIndex)
@@ -71,7 +68,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 if (TC1.Items.Count - 1 == TC1.SelectedIndex)
                 {
                     next.Content = "Создать проект";
-                  //  ImageNext.Visibility = System.Windows.Visibility.Collapsed;
+                    //  ImageNext.Visibility = System.Windows.Visibility.Collapsed;
                     CreateHidden.Visibility = System.Windows.Visibility.Visible;
 
                     if (((TreeViewModel)DataContext).AllObligatoryAttr(((TreeViewModel)DataContext).AttributesNewProject))
@@ -104,18 +101,18 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 next.Content = "Далее >";
                 CreateHidden.Visibility = System.Windows.Visibility.Hidden;
-              //  ImageNext.Visibility = System.Windows.Visibility.Visible;
+                //  ImageNext.Visibility = System.Windows.Visibility.Visible;
                 ((TreeViewModel)DataContext).getAllAttributes = true;
                 //next.IsEnabled = true;
                 // next.Content = "Далее";
-           //     back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 75, 10);
+                //     back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 75, 10);
             }
-            if (TC1.SelectedIndex == 0) 
-            { 
+            if (TC1.SelectedIndex == 0)
+            {
                 back.IsEnabled = false;
                 back.Visibility = Visibility.Hidden;
-               
-               // tblock.Text = "Добро пожаловать в мастер создания проекта по шаблону";
+
+                // tblock.Text = "Добро пожаловать в мастер создания проекта по шаблону";
             }
 
         }
@@ -147,15 +144,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ((TreeViewModel)DataContext).Dispose();
-            ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+                ((PureWindow)Parent).Close();
+         //   ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
         }
 
         private void CreateHidden_Click(object sender, RoutedEventArgs e)
         {
-            var s = ((TreeViewModel)((CreateProject)((PureWindow)((UserControl)((Grid)((Button)sender).Parent).Parent).Parent).Content).DataContext);
+            var s = (TreeViewModel)DataContext;
             s.CreateHidden = true;
-
-
 
             if (s.CreateUpProject(false))
             {
@@ -172,6 +168,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         }
 
-       
+
     }
 }

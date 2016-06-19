@@ -677,6 +677,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         public bool CreateUpProject(bool b)
         {
+
             bool b2 = true;
             if (b)
             {
@@ -689,6 +690,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (modifier && b2)
                 _modifier.Apply();
 
+            AddItemResult(null, "Готово");
             return b2;
         }
 
@@ -733,7 +735,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             var typeObj = _repository.GetType(_type);
             var builder = _modifier.Create(patent, typeObj);
 
-            _resultCreation.Add(new Result(typeObj, "Проект создан"));
+            AddItemResult(typeObj, "Проект создан");
             foreach (var attribute in attributes)
             {
                 if (attribute.Value is string)
@@ -778,11 +780,11 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     builder.AddFile(file.Name, _fileProvider.OpenRead(file), file.Created, file.Accessed, file.Modified);
 
                 }
-                _resultCreation.Add(new Result(typeObj, typeObj.Title + ": " + obj.DisplayName + " скопирован"));
+                AddItemResult(typeObj, typeObj.Title + ": " + obj.DisplayName + " скопирован");
             }
             catch
             {
-                _resultCreation.Add(new Result(typeObj, typeObj.Title + ": " + obj.DisplayName + " не найден"));
+                AddItemResult(typeObj, typeObj.Title + ": " + obj.DisplayName + " не найден");
             }
            
             if (b)
@@ -797,13 +799,20 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         var OrgUnit = _repository.GetOrganisationUnit(access.Key);
                         name = OrgUnit.Title;
                     }
-                    _resultCreation.Add(new Result(null, "- Назначены права доступа для " + name + " , уровня " + access.Value.AccessLevel));
+                    AddItemResult(null, "- Назначены права доступа для " + name + " , уровня " + access.Value.AccessLevel);
 
                 }
 
             modifier = true;
             if (CreateHidden) { builder.MakeSecret(); }
             return builder.DataObject;
+        }
+
+        private void AddItemResult(IType typeObj, string Text)
+        {
+            _resultCreation.Add(new Result(typeObj, Text));
+
+            NotifyPropertyChanged("_resultCreation");        
         }
 
         public void Dispose()

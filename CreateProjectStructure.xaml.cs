@@ -24,10 +24,10 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public CreateProjectStructure()
         {
             InitializeComponent();
-        /*    var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon1.ToBitmap();
-            ImageNext.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon2.ToBitmap();
-            ImageBack.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());*/
+            /*    var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon1.ToBitmap();
+                ImageNext.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon2.ToBitmap();
+                ImageBack.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());*/
         }
         private void next_Click(object sender, RoutedEventArgs e)
         {
@@ -37,17 +37,19 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 {
                     // создание
 
-                    var s = ((TreeViewModel)((CreateProjectStructure)((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Content).DataContext);
-                    
-                        if (s.CreateUpProject(true))
-                        {
-                            DialogWindow dw = new DialogWindow();//+++
-                            dw.Title = "Создание структуры проекта завершено";
-                            dw.Content = new ResultCreation() { DataContext = s };   //+++                       
-                            dw.Show();
-                            ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
-                        }
-                    
+                    var s = ((TreeViewModel)DataContext);
+                    DialogWindow dw = new DialogWindow();//+++
+                    dw.Title = "Создание структуры проекта завершено";
+                    dw.Content = new ResultCreation() { DataContext = s };   //+++                       
+                    dw.Show();
+                    if (s.CreateUpProject(true))
+                    {
+                        // ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+                        ((PureWindow)Parent).Close();
+                        ((TreeViewModel)DataContext).Dispose();
+                    }
+
+
                 }
                 if (TC1.Items.Count - 1 > TC1.SelectedIndex)
                 {
@@ -57,8 +59,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 if (TC1.Items.Count - 1 == TC1.SelectedIndex)
                 {
                     next.Content = "Создать структуру проекта";
-                  //  ImageNext.Visibility = System.Windows.Visibility.Collapsed;
-         //           back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 167, 10);
+                    //  ImageNext.Visibility = System.Windows.Visibility.Collapsed;
+                    //           back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 167, 10);
                 }
                 if (TC1.SelectedIndex > 0)
                 {
@@ -68,7 +70,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 }
             }
             else MessageBox.Show("Необходимо выбрать проект");
-            
+
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
@@ -80,15 +82,15 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (TC1.Items.Count - 1 > TC1.SelectedIndex)
             {
                 next.Content = "Далее >";
-           //     ImageNext.Visibility = System.Windows.Visibility.Visible;
-        //        back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 75, 10);
+                //     ImageNext.Visibility = System.Windows.Visibility.Visible;
+                //        back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 75, 10);
             }
-            if (TC1.SelectedIndex == 0) 
-            { 
+            if (TC1.SelectedIndex == 0)
+            {
                 back.IsEnabled = false;
                 back.Visibility = Visibility.Hidden;
-               
-               // tblock.Text = "Добро пожаловать в мастер создания проекта по шаблону";
+
+                // tblock.Text = "Добро пожаловать в мастер создания проекта по шаблону";
             }
 
         }
@@ -106,23 +108,23 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             else if (TC1.SelectedIndex == 2)
             {
                 textBlock1.Text = "Шаг 3 из 3. Выберите необходимые папки и файлы проекта";
-               // textBlock2.Visibility = Visibility.Visible;
-               // textBlock.Visibility = Visibility.Visible;
+                // textBlock2.Visibility = Visibility.Visible;
+                // textBlock.Visibility = Visibility.Visible;
             }
-          /*  else if (TC1.SelectedIndex == 3)
-            {
-                textBlock1.Text = "Шаг 4 из 4. Заполните атрибутную карточку нового проекта";
-                textBlock2.Visibility = Visibility.Collapsed;
-                textBlock.Visibility = Visibility.Collapsed;
-            }*/
+            /*  else if (TC1.SelectedIndex == 3)
+              {
+                  textBlock1.Text = "Шаг 4 из 4. Заполните атрибутную карточку нового проекта";
+                  textBlock2.Visibility = Visibility.Collapsed;
+                  textBlock.Visibility = Visibility.Collapsed;
+              }*/
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+            ((TreeViewModel)DataContext).Dispose();
+            ((PureWindow)Parent).Close();
+            //((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
         }
 
-       
-    
     }
 }
