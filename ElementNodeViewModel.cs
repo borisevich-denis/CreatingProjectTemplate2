@@ -99,11 +99,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 {
                     StreamSvgConverter Isc = new StreamSvgConverter(new WpfDrawingSettings());
                     Bitmap bm = null;
-                    Isc.Convert(new MemoryStream(iconByte), s);
-                    bm = new Bitmap(s);
-                    Isc.Dispose();
-                    _icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-                    //bm.Dispose();
+                    if (iconByte != null)
+                    {
+                        Isc.Convert(new MemoryStream(iconByte), s);
+                        bm = new Bitmap(s);
+                        Isc.Dispose();
+                        _icon = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                        //bm.Dispose();
+                    }
                 }
             }
         }
@@ -371,7 +374,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
                             if (IsLoading())
                                 _childNodes.Clear();
-                            if (value.Type.HasFiles == false && value.Type.Name != "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8")
+                            if (value.Type.HasFiles == false && value.Type.Name != "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8" && value.Type.Name != "Smart_folder_type")
                             {
                                 if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
                                     _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider, this, value, _repository, _tree, nameTypeProject,nameTypeProjectFolder));

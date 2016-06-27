@@ -38,16 +38,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     // создание
 
                     var s = ((TreeViewModel)DataContext);
-                    DialogWindow dw = new DialogWindow();//+++
-                    dw.Title = "Создание структуры проекта завершено";
-                    dw.Content = new ResultCreation() { DataContext = s };   //+++                       
-                    dw.Show();
-                    if (s.CreateUpProject(true))
+                    ((PureWindow)Parent).Content = new StageCreate() { DataContext = s };
+                    s.CreateUpProject(true);
+                  /*  if (s.CreateUpProject(true))
                     {
                         // ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
-                        ((PureWindow)Parent).Close();
-                        ((TreeViewModel)DataContext).Dispose();
-                    }
+                        //((PureWindow)Parent).Close();
+                        //((TreeViewModel)DataContext).Dispose();
+                    }*/
 
 
                 }

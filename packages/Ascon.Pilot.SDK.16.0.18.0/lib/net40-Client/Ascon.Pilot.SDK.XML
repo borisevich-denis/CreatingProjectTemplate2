@@ -1,0 +1,2608 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ascon.Pilot.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:Ascon.Pilot.SDK.ChildrenFilters">
+            <summary>
+            Predefined filters for IDataObject.Children
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ChildrenFilters.GetChildrenForListView(Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IObjectsRepository)">
+            <summary>
+            Gets child object identifiers filtered for list view
+            </summary>
+            <param name="obj">object</param>
+            <param name="repository">repository</param>
+            <returns>Object identifiers</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ChildrenFilters.GetChildrenForPilotStorage(Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IObjectsRepository)">
+            <summary>
+            Gets child object identifiers filtered for Pilot Storage
+            </summary>
+            <param name="obj">object</param>
+            <param name="repository">repository</param>
+            <returns>Object identifiers</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ChildrenFilters.GetChildrenByTypeNames(Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IObjectsRepository,System.String[])">
+            <summary>
+            Gets child object identifiers filtered by type names
+            </summary>
+            <param name="obj">object</param>
+            <param name="repository">repository</param>
+            <param name="typeNames">type names to filter by</param>
+            <returns>Object identifiers</returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IFilesSnapshot">
+            <summary>
+            Represents the files snapshot
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFilesSnapshot.Created">
+            <summary>
+            Gets the snapshot creation time
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFilesSnapshot.CreatorId">
+            <summary>
+            Gets the snapshot creator id
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFilesSnapshot.Reason">
+            <summary>
+            Gets the reason of the replacement
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFilesSnapshot.Files">
+            <summary>
+            Gets the collection of the files
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IClientInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IClientInfo.GetClientType">
+            <summary>
+            Get type of client
+            </summary>
+            <returns>Client type</returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ClientType">
+            <summary>
+            Type of client
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.ClientType.Ice">
+            <summary>
+            ICE
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.ClientType.IceEnterprise">
+            <summary>
+            ICE-Enterprise
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.ClientType.ThreeDStorage">
+            <summary>
+            3D Storage
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ISearchService">
+            <summary>
+            Search service provider
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISearchService.GetSmartFolderQueryBuilder">
+            <summary>
+            Get search query builder for smart folder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ISmartFolderQueryBuilder">
+            <summary>
+            Search query builder for smart folder
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithSearchMode(Ascon.Pilot.SDK.SearchMode)">
+            <summary>
+            Set search mode
+            </summary>
+            <param name="searchMode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithKeyword(System.String)">
+            <summary>
+            Set keywords for searching
+            </summary>
+            <param name="keyword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithQuotedKeyword(System.String)">
+            <summary>
+            Set search phrases that include spaces for searching
+            </summary>
+            <param name="keyword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithType(System.Int32)">
+            <summary>
+            Specify the type of objects to search
+            </summary>
+            <param name="typeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithTypes(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Specify the list of types of objects to search
+            </summary>
+            <param name="typeIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithAuthor(System.Int32)">
+            <summary>
+            Specify the author of items to search
+            </summary>
+            <param name="authorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithAuthors(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Specify the list of authors of items to search
+            </summary>
+            <param name="authorIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedToday">
+            <summary>
+            Set the creation period as today
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedYesterday">
+            <summary>
+            Set the creation period as yesterday
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedThisWeek">
+            <summary>
+            Set the creation period as this week
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedLastWeek">
+            <summary>
+            Set the creation period as last week
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedThisMonth">
+            <summary>
+            Set the creation period as this month
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedLastMonth">
+            <summary>
+            Set the creation period as last month
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedThisYear">
+            <summary>
+            Set the creation period as this year
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.WithCreatedLastYear">
+            <summary>
+            Set the creation period as last year
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISmartFolderQueryBuilder.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.SearchMode">
+            <summary>
+            Search mode
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SearchMode.Attributes">
+            <summary>
+            Search by attributes
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SearchMode.Files">
+            <summary>
+            Search by files.
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.OfflineEventArgs">
+            <summary>
+            Notifies that the application has switched to the offline mode
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.OnlineEventArgs">
+            <summary>
+            Notifies that the application has switched to the online mode
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.CloseTabEventArgs">
+            <summary>
+            Notifies that the tab with particular title has been closed
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.CloseTabEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the CloseTabEventArgs class
+            </summary>
+            <param name="tabTitle">The title of the closed tab</param>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.CloseTabEventArgs.TabTitle">
+            <summary>
+            Gets the closed tab title
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.OpenTabEventArgs">
+            <summary>
+            Notifies that the tab with particular title has been opened
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.OpenTabEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the OpenTabEventArgs class
+            </summary>
+            <param name="tabTitle">The title of the opened tab</param>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.OpenTabEventArgs.TabTitle">
+            <summary>
+            Gets the opened tab title
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.LoadedEventArgs">
+            <summary>
+            Notifies that the extension has been loaded
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.UnloadedEventArgs">
+            <summary>
+            Notifies that the extension has been unloaded
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IAccess">
+            <summary>
+            Represents the access rights object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAccess.AccessLevel">
+            <summary>
+            Get the level of access
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAccess.ValidThrough">
+            <summary>
+            Get the valid through
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAccess.IsInheritable">
+            <summary>
+            Get the flag is inheritable rights or not
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAccess.IsInherited">
+            <summary>
+            Get the flag is inherited rights or not
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.AccessLevel">
+            <summary>
+            Specifies various access level of object 
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AccessLevel.None">
+            <summary>
+            No access
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AccessLevel.Create">
+            <summary>
+            Access level to creat
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AccessLevel.Edit">
+            <summary>
+            Access level to edit
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AccessLevel.View">
+            <summary>
+            Access level to view
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AccessLevel.ViewCreate">
+            <summary>
+            Access level to view and create
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AccessLevel.ViewEdit">
+            <summary>
+            Access level to view, create and edit
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IAttribute">
+            <summary>
+            Represents the type's attribute
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.Name">
+            <summary>
+            Gets the attribute internal name
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.Title">
+            <summary>
+            Gets the attribute name to be displayed
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.IsObligatory">
+            <summary>
+            Indicates whether it is requered to fill the attribute value before saving the associated object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.DisplaySortOrder">
+            <summary>
+            Gets the attributes sort order
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.ShowInObjectsExplorer">
+            <summary>
+            Indicates whether the attributes should be displayed in the Objects Explorer
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.IsService">
+            <summary>
+            Indicates whether the attibute is service
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.Configuration">
+            <summary>
+            Get the attributes configuration in XML format. Used in specific cases like reference books or bar codes.
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.DisplayHeight">
+            <summary>
+            Gets the number of lines in the associated text box editor. Valid only for the text attributes.
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IAttribute.Type">
+            <summary>
+            Get the type of the attribute
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.AttributeType">
+            <summary>
+            Specifies various kinds of attribute types 
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AttributeType.Integer">
+            <summary>
+            Integer attribute
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AttributeType.Double">
+            <summary>
+            Double attribute
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AttributeType.DateTime">
+            <summary>
+            Datetime attribute
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AttributeType.String">
+            <summary>
+            String attribute
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AttributeType.Decimal">
+            <summary>
+            Decimal attribute
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.AttributeType.Numerator">
+            <summary>
+            Numerator attribute
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IDataPlugin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.INotification">
+            <summary>
+            Represents the notification with it's features
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.INotification.ObjectId">
+            <summary>
+            Gets the object id
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.INotification.Title">
+            <summary>
+            Gets the title of the object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.INotification.UserId">
+            <summary>
+            Gets the user id, who made the change
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.INotification.DateTime">
+            <summary>
+            Gets the time when the change was made
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.INotification.TypeId">
+            <summary>
+            Gets the object's type id
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.INotification.ChangeKind">
+            <summary>
+            Gets the kind of change
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.NotificationKind">
+            <summary>
+            Kind of change
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectCreated">
+            <summary>
+            The object has been created
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectDeleted">
+            <summary>
+            The object has been deleted
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectRestored">
+            <summary>
+            The object has been restored
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectRenamed">
+            <summary>
+            The object has been renamed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectMoved">
+            <summary>
+            The object has been moved to another parent
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectAccessChanged">
+            <summary>
+            An access of the object has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectAttributeChanged">
+            <summary>
+            An attribute of the object has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectFileChanged">
+            <summary>
+            The file of the object has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectSignatureChanged">
+            <summary>
+            The signature of the file has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.ObjectAnnotationChanged">
+            <summary>
+            The annotation of the file has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectCreated">
+            <summary>
+            The storage object has been created
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectDeleted">
+            <summary>
+            The storage object has been deleted
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectRestored">
+            <summary>
+            The storage object has been restored
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectRenamed">
+            <summary>
+            The storage object has been renamed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectMoved">
+            <summary>
+            The storage object has been moved to another parent
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectAccessChanged">
+            <summary>
+            An access of the storage object has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectAttributeChanged">
+            <summary>
+            An attribute of the storage object has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskCreated">
+            <summary>
+            The task has been created
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskAttributeChanged">
+            <summary>
+            An attribute of the task has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskMessageChanged">
+            <summary>
+            The message of the task has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskStateAssigned">
+            <summary>
+            The state of the task has been changed to assigned
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskStateInProgress">
+            <summary>
+            The state of the task has been changed to in progress
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskStateOnValidation">
+            <summary>
+            The state of the task has been changed to on validation
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskStateRevoked">
+            <summary>
+            The state of the task has been changed to revoked
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskStateReturnedAfterValidation">
+            <summary>
+            The state of the task has been changed to returned after validation
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskAttachmentChanged">
+            <summary>
+            An attachments of the task has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskTitleChanged">
+            <summary>
+            The task title has been changed
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskDescriptionChanged">
+            <summary>
+            The task description has been changed
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IPilotDialogService">
+            <summary>
+            Interface for interaction with Pilot dialogs
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogService.ShowSharingSettingsDialog(System.Collections.Generic.IEnumerable{System.Guid},Ascon.Pilot.SDK.IPilotDialogOptions)">
+            <summary>
+            Shows the sharing settings dialog for the specified set of objects
+            </summary>
+            <param name="objectIds">The list of objects to show sharing settings dialog for</param>
+            <param name="options">Dialog options </param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogService.ShowPositionSelectorDialog(Ascon.Pilot.SDK.IPilotDialogOptions)">
+            <summary>
+            Shows the position picker dialog
+            </summary>
+            <param name="options">Dialog options </param>
+            <returns>A collection of selected positions</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogService.ShowDocumentsSelectorDialog(Ascon.Pilot.SDK.IPilotDialogOptions)">
+            <summary>
+            Shows the documents explorer to select a pick up a document
+            </summary>
+            <param name="options">Dialog options </param>
+            <returns>A collection of selected objects</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogService.ShowTasksSelectorDialog(Ascon.Pilot.SDK.IPilotDialogOptions)">
+            <summary>
+            Shows the tasks explorer to select a pick up a task
+            </summary>
+            <param name="options">dialog options</param>
+            <returns>A collection of selected tasks</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogService.NewOptions">
+            <summary>
+            Uses to obtain base dialog options
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPilotDialogService.AccentColor">
+            <summary>
+            Provides an hexadecimal representation of accent color used in the running application
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IPilotDialogOptions">
+            <summary>
+            Provides methods to build dialog options
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogOptions.WithCaption(System.String)">
+            <summary>
+            Specifies a caption for the dialog
+            </summary>
+            <param name="caption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogOptions.WithOkButtonCaption(System.String)">
+            <summary>
+            Specifies a caption for the OK button
+            </summary>
+            <param name="okButtonCaption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogOptions.WithParentWindow(System.IntPtr)">
+            <summary>
+            Specifies the pointer of the parent window to show the dialog modal to this parent window
+            </summary>
+            <param name="parentWindow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogOptions.WithAllowMultiSelect(System.Boolean)">
+            <summary>
+            Specifyes whether or not to enable the OK button if multiple items are selected
+            </summary>
+            <param name="allowMultiSelect"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IEventAggregator">
+            <summary>
+            Enables loosely-coupled publication of and subscription to events.
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IEventAggregator.Publish(System.Object)">
+            <summary>
+            Publishes an event
+            </summary>
+            <param name="message">event message</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IEventAggregator.Subscribe(System.Object)">
+            <summary>
+            Subscribes to the messages.
+            </summary>
+            <param name="subscriber">Event subscriber. Should implement the <see cref="T:Ascon.Pilot.SDK.IHandle`1"/> interface</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IEventAggregator.Unsubscribe(System.Object)">
+            <summary>
+            Unsubscribes from the messages.
+            </summary>
+            <param name="subscriber">Event subscriber. Should implement the <see cref="T:Ascon.Pilot.SDK.IHandle`1"/> interface</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IHandle">
+            <summary>
+            A marker interface for classes that subscribe to messages.
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IHandle`1">
+            <summary>
+            Denotes a class which can handle a particular type of message.
+            </summary>
+            <typeparam name = "TMessage">The type of message to handle.</typeparam>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IHandle`1.Handle(`0)">
+            <summary>
+              Handles the message.
+            </summary>
+            <param name = "message">The message.</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IFile">
+            <summary>
+            Represents the file 
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Id">
+            <summary>
+            Gets the file's identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Size">
+            <summary>
+            Gets the file's size
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Md5">
+            <summary>
+            Gets the file's md5 hash code
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Name">
+            <summary>
+            Gets the file's name
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Modified">
+            <summary>
+            Gets the file modified time
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Created">
+            <summary>
+            Gets the file creation time
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Accessed">
+            <summary>
+            Gets the file access time
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IFile.Signatures">
+            <summary>
+            Gets the collection of signatures file
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ISignature">
+            <summary>
+            Represents the signature
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISignature.Id">
+            <summary>
+            Gets the signature's identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISignature.DatabaseId">
+            <summary>
+            Gets the database id
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISignature.PositionId">
+            <summary>
+            Gets the ID position of the person who has signed the file
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISignature.Role">
+            <summary>
+            Gets the role of the person who has signed the file
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISignature.Sign">
+            <summary>
+            Gets the digital sign
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISignature.RequestedSigner">
+            <summary>
+            Gets the requested signer name
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IFileProvider">
+            <summary>
+            Represents a provider that enables to access files
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IFileProvider.Exists(System.Guid)">
+            <summary>
+            Determines whether the specified file exists
+            </summary>
+            <param name="fileId">File identifier</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IFileProvider.IsFull(System.Guid)">
+            <summary>
+            Determines whether the specified file is fully downloaded and could be accessed even if connection to the server is not established.
+            </summary>
+            <param name="fileId">File identifier</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IFileProvider.OpenRead(Ascon.Pilot.SDK.IFile)">
+            <summary>
+            Opens an existing file for reading. If file is not represented in local cache, downloads it's content as needed.
+            </summary>
+            <param name="file">File</param>
+            <returns>Stream associated with the file</returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.INewTabPage">
+            <summary>
+            Extension interface that enables you to register the button on new tab page
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.INewTabPage.BuildNewTabPage(Ascon.Pilot.SDK.INewTabPageHost)">
+            <summary>
+            The method is called just before the new tab page is created 
+            </summary>
+            <param name="host">The host object of associated new tab page</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.INewTabPage.OnButtonClick(System.String)">
+            <summary>
+            The method is invoked once the user clicks a button
+            </summary>
+            <param name="name">The name of a button that has been clicked</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.INewTabPageHost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.INewTabPageHost.AddButton(System.String,System.String,System.String,System.Byte[])">
+            <summary>
+            Add new button on new tab page
+            </summary>
+            <param name="title">The title of the extension that is used as extensions's start button caption and extensions's tab header</param>
+            <param name="name">The new button name</param>
+            <param name="toolTip">The text to display in tooltip</param>
+            <param name="svgIcon">The extension's SVG icon that is used in extensions's start button</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ILicenseManager">
+            <summary>
+            License manager
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ILicenseManager.Consume(System.Int32)">
+            <summary>
+            Consume license
+            </summary>
+            <param name="licenseType">License code of your product</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ILicenseManager.Release(System.Int32)">
+            <summary>
+            Release license
+            </summary>
+            <param name="licenseType">License code of your product</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IPersonalSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPersonalSettings.SubscribeSetting(System.String)">
+            <summary>
+            Subsribes to changes in personal settings
+            </summary>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPersonalSettings.ChangeSettingValue(System.String,System.String)">
+            <summary>
+            Change setting value
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ISettingsFeature">
+            <summary>
+            Extension interface that enables you to register the view on settings dialog
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISettingsFeature.SetValueProvider(Ascon.Pilot.SDK.ISettingValueProvider)">
+            <summary>
+            Sets the provider for the setting value
+            </summary>
+            <param name="settingValueProvider">setting value provider</param>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISettingsFeature.Key">
+            <summary>
+            Settings item unique id
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISettingsFeature.Title">
+            <summary>
+            Setting item display title
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ISettingsFeature.Editor">
+            <summary>
+            Settings feature item value editor
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ISettingValueProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISettingValueProvider.GetValue">
+            <summary>
+            Gets the setting value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISettingValueProvider.SetValue(System.String)">
+            <summary>
+            Sets the setting value
+            </summary>
+            <param name="value">value</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.SystemSettingsKeys">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.SystemSettingsKeys.FavoritesFeatureKey">
+            <summary>
+            Get's favorites feature key
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.SystemSettingsKeys.PilotStorageDriveLetter">
+            <summary>
+            Get's pilot storage drive leter feature key
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.SystemSettingsKeys.AgreementRolesFeatureKey">
+            <summary>
+            Get's agreement roles feature key
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.SystemSettingsKeys.TasksFiltersFeatureKey">
+            <summary>
+            Get's tasks filters feature key
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.SystemSettingsKeys.MountedItemsList">
+            <summary>
+            Get's mounted on Pilot-Storage items feature key
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IStorageDataObject">
+            <summary>
+            Represents the pilot-storage object with it's attributes and relations
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStorageDataObject.DataObject">
+            <summary>
+            Get's data object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStorageDataObject.Path">
+            <summary>
+            Get's path of file or folder on pilot-storage
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStorageDataObject.State">
+            <summary>
+            Get's current state of object 
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStorageDataObject.IsDirectory">
+            <summary>
+            Object is directory or file
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.StorageObjectState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.NotLoaded">
+            <summary>
+            Object not loaded 
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.Loaded">
+            <summary>
+            Object is loaded 
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.Outdated">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.NotSent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.Edited">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.Aborted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.Temp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.StorageObjectState.Locked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IStorageDataObjectProvider">
+            <summary>
+            Provides method to obtain info about pilot-storage and its objects
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IStorageDataObjectProvider.GetStoragePath">
+            <summary>
+            Gets the pilot-storage path
+            </summary>
+            <returns>The path of the pilot-storage root</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IStorageDataObjectProvider.GetStorageItem(System.String)">
+            <summary>
+            Gets pilot-storage object that corresponds a file or folder
+            </summary>
+            <param name="absolutePath">The absolute path of a file system object of the pilot-sotrage</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ITaskMessage">
+            <summary>
+            Represents a task message with it's attributes
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.Id">
+            <summary>
+            Mesage identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.Author">
+            <summary>
+            Author of the message
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.Text">
+            <summary>
+            Message text
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.Created">
+            <summary>
+            Date of create message
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.Attachments">
+            <summary>
+            Message attachment ids collections
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.DataState">
+            <summary>
+            Get the data state of the message
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskMessage.SynchronizationState">
+            <summary>
+            Get the synchronization state of the message
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ITaskModifier">
+            <summary>
+            Creates, modifies and deletes objects
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.NewWorkflow">
+            <summary>
+            Creates a new workflow
+            </summary>
+            <returns>Fluent interface that enables you to modify created objects</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.NewStage(Ascon.Pilot.SDK.IWorkflowObject)">
+            <summary>
+            Creates a new stage
+            </summary>
+            <param name="workflow">Workflow object</param>
+            <returns>Fluent interface that enables you to modify created objects</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.NewTask(System.String,System.String,System.Collections.Generic.IEnumerable{System.Int32},System.DateTime)">
+            <summary>
+            Creates a new task
+            </summary>
+            <param name="title">Task title</param>
+            <param name="description">Task description</param>
+            <param name="executors">Task executors positions ids list</param>
+            <param name="deadLine">Task deadline</param>                
+            <returns>A list of created tasks as Fluent interface that enables you to modify created objects. The number of created tasks is the number of executers</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.NewTask(System.String,System.String,System.Collections.Generic.IEnumerable{System.Int32},System.DateTime,System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Creates a new task
+            </summary>
+            <param name="title">Task title</param>
+            <param name="description">Task description</param>
+            <param name="executors">Task executors positions ids list</param>
+            <param name="deadLine">Task deadline</param>      
+            <param name="attachments">Task attachments ids list</param>              
+            <returns>A list of created tasks as Fluent interface that enables you to modify created objects. The number of created tasks is the number of executers</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.NewTask(Ascon.Pilot.SDK.IWorkflowObject,Ascon.Pilot.SDK.IStageObject,System.Int32)">
+            <summary>
+            Create a new task 
+            </summary>
+            <param name="workflow">Workflow object</param>
+            <param name="stage">Stage object</param>
+            <param name="executorPosition">Executor position ID</param>
+            <returns>Fluent interface that enables you to modify the object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.NewAgreementTask(Ascon.Pilot.SDK.IWorkflowObject,Ascon.Pilot.SDK.IStageObject,System.Int32)">
+            <summary>
+            Creates a new agreement task
+            </summary>
+            <param name="workflow">Workflow object</param>
+            <param name="stage">Stage object</param>
+            <param name="executorPosition">Executor position ID</param>
+            <returns>Fluent interface that enables you to modify the object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.EditTask(Ascon.Pilot.SDK.ITaskObject)">
+            <summary>
+            Edits existing task
+            </summary>
+            <param name="task">Task to modify</param>
+            <returns>Fluent interface that enables you to modify the object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.EditWorkflow(Ascon.Pilot.SDK.IWorkflowObject)">
+            <summary>
+            Edits existing workflow
+            </summary>
+            <param name="workflow">Workflow to modify</param>
+            <returns>Fluent interface that enables you to modify the object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.EditStage(Ascon.Pilot.SDK.IStageObject)">
+            <summary>
+            Edits existing stage
+            </summary>
+            <param name="stage">Stage to modify</param>
+            <returns>Fluent interface that enables you to modify the object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskModifier.Apply">
+            <summary>
+            Applies all the changes have been made in modifier
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ITaskBuilder">
+            <summary>
+            Fluent interface that enables you to modify the associated task
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetAttribute(System.String,System.String)">
+            <summary>
+            Sets the string attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetAttribute(System.String,System.Int32)">
+            <summary>
+            Sets the Int32 attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetAttribute(System.String,System.Double)">
+            <summary>
+            Sets the double attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetAttribute(System.String,System.DateTime)">
+            <summary>
+            Sets the DateTime attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.RemoveAttribute(System.String)">
+            <summary>
+            Removes attribute
+            </summary>
+            <param name="name">Attribute name</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetTitle(System.String)">
+            <summary>
+            Change task title
+            </summary>
+            <param name="title">new task title</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetDescription(System.String)">
+            <summary>
+            Change task description
+            </summary>
+            <param name="description">new task description</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetState(Ascon.Pilot.SDK.State)">
+            <summary>
+            Change task state
+            </summary>
+            <param name="state">new task state</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetExecutor(System.Int32)">
+            <summary>
+            Change executor
+            </summary>
+            <param name="positionId">new executor position id</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetDeadline(System.DateTime)">
+            <summary>
+            Change deadline date
+            </summary>
+            <param name="deadlineDate">new deadline date</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetInitiatorAttachments(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Change initiator attachments
+            </summary>
+            <param name="attachments">new attachments</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetExecutorAttachments(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Change executor attachments
+            </summary>
+            <param name="attachments">new attachments</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetExecutorRole(System.String)">
+            <summary>
+            Change executor role
+            </summary>
+            <param name="role">role</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskBuilder.SetValidationPhase(System.Boolean)">
+            <summary>
+            Set validation phase of the task
+            </summary>
+            <param name="withValidation"></param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskBuilder.TaskObject">
+            <summary>
+            Gets the associated task
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IWorkflowChangeBuilder">
+            <summary>
+            Fluent interface that enables you to modify the associated workflow
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IWorkflowChangeBuilder.SetTitle(System.String)">
+            <summary>
+            Change task title
+            </summary>
+            <param name="title">new task title</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IWorkflowChangeBuilder.SetDescription(System.String)">
+            <summary>
+            Change task description
+            </summary>
+            <param name="description">new task description</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IWorkflowChangeBuilder.SetInitiatorAttachments(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Change initiator attachments
+            </summary>
+            <param name="attachments">new attachments</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IWorkflowChangeBuilder.WorkflowObject">
+            <summary>
+            Gets the associated workflow
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IStageChangeBuilder">
+            <summary>
+            Fluent interface that enables you to modify the associated stage
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IStageChangeBuilder.SetStageOrder(System.Int32)">
+            <summary>
+            Change stage order
+            </summary>
+            <param name="order">order</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStageChangeBuilder.StageObject">
+            <summary>
+            Gets the associated stage
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ITabServiceProvider">
+            <summary>
+            Interface for managing tab pages
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.GetTabPageTitles">
+            <summary>
+            Get opened tab pages titles
+            </summary>
+            <returns>titles</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.GetActiveTabPageTitle">
+            <summary>
+            Returns a localized title of an active tab page
+            </summary>
+            <returns>a localized title</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.ActivateTabPage(System.String)">
+            <summary>
+            Activate the first tab page by title
+            </summary>
+            <param name="title">a title of tab page</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.OpenNewTabPage(System.Boolean)">
+            <summary>
+            Open new tab page
+            </summary>
+            <param name="isInOtherPane">open new tab page in other layout pane</param>
+            <returns>localized title of new tab page</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.OpenTabPage(System.String,System.Windows.FrameworkElement,System.Boolean)">
+            <summary>
+            Oen new tab page with content
+            </summary>
+            <param name="title">a title of tab page</param>
+            <param name="view">a content of tab page</param>
+            <param name="isInOtherPane">open new tab page in other layout pane</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.CloseTabPage(System.String)">
+            <summary>
+            Close first opened tab page by title
+            </summary>
+            <param name="title">a title of tab page</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.UpdateTabPageContent(System.String,System.String,System.Windows.FrameworkElement)">
+            <summary>
+            Update the content of the first tab page by title
+            </summary>
+            <param name="oldTitle">a old title of tab page</param>
+            <param name="newTitle">a new title of tab page</param>
+            <param name="view">a content of tab page</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.ShowElement(System.Guid)">
+            <summary>
+            Open tab and selects the given element 
+            </summary>
+            <param name="id">element's id</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITabServiceProvider.ShowElement(System.Guid,System.DateTime)">
+            <summary>
+            Open tab and selects the specific version of the given element 
+            </summary>
+            <param name="id">element's id</param>
+            <param name="version">element's version creation time</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IType">
+            <summary>
+            Represents the object's type with it's attributes and relations
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Id">
+            <summary>
+            Gets the type identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Name">
+            <summary>
+            Gets the type internal name
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Title">
+            <summary>
+            Gets the type name to be displayed
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Sort">
+            <summary>
+            Gets the type sort order
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.HasFiles">
+            <summary>
+            Gets the value that indicates if an object of this type can contain files
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Children">
+            <summary>
+            Gets the child types collection
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Attributes">
+            <summary>
+            Gets the collection of attributes associated with the type
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.DisplayAttributes">
+            <summary>
+            Get the collection of attributes to be displayed in UI
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.SvgIcon">
+            <summary>
+            Gets the icon in SVG format
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.IsMountable">
+            <summary>
+            Gets the value that indicates if an object of this type can be mounted to the Pilot-Storage
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.Kind">
+            <summary>
+            Gets the kind of the type
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.IsDeleted">
+            <summary>
+            Indicates whether the type is deleted
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IType.IsService">
+            <summary>
+            Indicates whether the type is visible or can be accessed only using either special function or extensions
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.TypeKind">
+            <summary>
+            Specifies various kinds of object types 
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.TypeKind.User">
+            <summary>
+            User defined types
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.TypeKind.System">
+            <summary>
+            System types.
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IBaseContextMenu">
+            <summary>
+            Base contex menu interface
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IBaseContextMenu.OnMenuItemClick(System.String)">
+            <summary>
+            The method is invoked once the user clicks a menu item
+            </summary>
+            <param name="itemName">The name of an item that has been clicked</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IMenuHost">
+            <summary>
+            Represents a main or context menu and enables to add new items to it
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IMenuHost.GetItems(System.String)">
+            <summary>
+            Gets the list of existing items of associated menu or subitems of an item with particular name
+            </summary>
+            <param name="parentName">
+            The parent item name, if null the list of root items is returned
+            </param>
+            <returns>
+            Existing menu item names
+            </returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IMenuHost.AddItem(System.String,System.String,System.Byte[],System.Int32)">
+            <summary>
+            Adds a new item to the associated menu
+            </summary>
+            <param name="name">Item's internal name</param>
+            <param name="displayName">Item's name to be displayed</param>
+            <param name="icon">Item's icon in SVG format for object's menu or png format for pilot-storage</param>
+            <param name="index">The index to put the new item at</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IMenuHost.AddSubItem(System.String,System.String,System.String,System.Byte[],System.Int32)">
+            <summary>
+            Adds a new subitem to the specified item of the associated menu
+            </summary>
+            <param name="parentName">The name of the parent item</param>
+            <param name="name">Item's internal name</param>
+            <param name="displayName">Item's name to be displayed</param>
+            <param name="icon">Item's icon in SVG format for object's menu or png format for pilot-storage</param>
+            <param name="index">The index to put the new item at</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IObjectContextMenu">
+            <summary>
+            Extension interface that allows to add new items to the Objects Explorer's context menu
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectContextMenu.BuildContextMenu(Ascon.Pilot.SDK.IMenuHost,System.Collections.Generic.IEnumerable{Ascon.Pilot.SDK.IDataObject},System.Boolean)">
+            <summary>
+            The method is called just before the menu is shown 
+            </summary>
+            <param name="menuHost">The host object of associated menu</param>
+            <param name="selection">The list of selected objects the menu has been shown for</param>
+            <param name="isContext"></param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IStorageContextMenu">
+            <summary>
+            Extension interface that allows to add new items to the Pilot-Storage's context menu
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IStorageContextMenu.BuildContextMenu(Ascon.Pilot.SDK.IMenuHost,System.Collections.Generic.IEnumerable{Ascon.Pilot.SDK.IStorageDataObject})">
+            <summary>
+            The method is called just before the menu is shown 
+            </summary>
+            <param name="menuHost">The host object of associated menu</param>
+            <param name="selection">The list of selected objects the menu has been shown for</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ITaskContextMenu">
+            <summary>
+            Extension interface that allows to add new items to the Tasks Explorer's context menu
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ITaskContextMenu.BuildContextMenu(Ascon.Pilot.SDK.IMenuHost,System.Collections.Generic.IEnumerable{Ascon.Pilot.SDK.ITaskObject})">
+            <summary>
+            The method is called just before the context menu is shown 
+            </summary>
+            <param name="menuHost">The host object of associated menu</param>
+            <param name="selection">The list of selected objects the menu has been shown for</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IMainMenu">
+            <summary>
+            Extension interface that allows to add new items to the application main menu
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IMainMenu.BuildMenu(Ascon.Pilot.SDK.IMenuHost)">
+            <summary>
+            The method is called just before the main menu is shown 
+            </summary>
+            <param name="menuHost">The host object of associated menu</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ISystemTrayMenu">
+            <summary>
+            Extension interface that allows to add new items to the system tray menu
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.ISystemTrayMenu.BuildMenu(Ascon.Pilot.SDK.IMenuHost)">
+            <summary>
+            The method is called just before the tray menu is shown 
+            </summary>
+            <param name="menuHost">The host object of associated context menu</param>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IObjectModifier">
+            <summary>
+            Creates, modifies and deletes objects
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Create(Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IType)">
+            <summary>
+            Creates a new object
+            </summary>
+            <param name="parent">Parent object</param>
+            <param name="type">Creating object type</param>
+            <returns>Fluent interface that enables you to modify created object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Edit(Ascon.Pilot.SDK.IDataObject)">
+            <summary>
+            Edits existing object
+            </summary>
+            <param name="object">Object to modify</param>
+            <returns>Fluent interface that enables you to modify the object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Move(Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IDataObject)">
+            <summary>
+            Move the object to a new parent.
+            </summary>
+            <param name="object">Object to move</param>
+            <param name="newParent">Parent object</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Delete(Ascon.Pilot.SDK.IDataObject)">
+            <summary>
+            Deletes the object (moves it to the recycle bin).
+            </summary>
+            <param name="object">Object to delete</param>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Apply">
+            <summary>
+            Applies all the changes have been made in modifier
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IObjectBuilder">
+            <summary>
+            Fluent interface that enables you to modify the associated object
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.SetAttribute(System.String,System.String)">
+            <summary>
+            Sets the string attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.SetAttribute(System.String,System.Int32)">
+            <summary>
+            Sets the Int32 attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.SetAttribute(System.String,System.Double)">
+            <summary>
+            Sets the double attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.SetAttribute(System.String,System.DateTime)">
+            <summary>
+            Sets the DateTime attribute value
+            </summary>
+            <param name="name">Attribute name</param>
+            <param name="value">Attribute value</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveAttribute(System.String)">
+            <summary>
+            Removes attribute
+            </summary>
+            <param name="name">Attribute name</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.AddFile(System.String)">
+            <summary>
+            Adds a new file to the associated object
+            </summary>
+            <param name="path">Path to a file</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.AddFile(System.String,System.IO.Stream,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Adds a new file to the associated object
+            </summary>
+            <param name="name">Name of the file</param>
+            <param name="stream">File stream</param>
+            <param name="creationTime">File creation time</param>
+            <param name="lastAccessTime">File last access time</param>
+            <param name="lastWriteTime">File last write time</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.SetAccessRights(System.Int32,Ascon.Pilot.SDK.AccessLevel,System.DateTime,System.Boolean)">
+            <summary>
+            Add or update rights to the associated object
+            </summary>
+            <param name="positionId">Person position id</param>
+            <param name="level">Access level</param>
+            <param name="validThrough">Rights valid through</param>
+            <param name="isInherited">A flag indicating whether or not inherit rights</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveAccessRights(System.Int32)">
+            <summary>
+            Remove rights to the associated object
+            </summary>
+            <param name="positionId">Person position id</param>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.MakeSecret">
+            <summary>
+            Make secret object
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.MakePublic">
+            <summary>
+            Make public object
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.AddSourceFileRelation(System.Guid)">
+            <summary>
+            Adds Source File relation between objects
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveSourceFileRelation(System.Guid)">
+            <summary>
+            Removes Source File relation between objects
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.AddTaskInitiatorAttachmentRelation(System.Guid)">
+            <summary>
+            Adds Task Initiator Attachment relation between objects
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveTaskInitiatorAttachmentRelation(System.Guid)">
+            <summary>
+            Removes Task Initiator Attachment relation between objects
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.AddTaskMessageAttachmentRelation(System.Guid)">
+            <summary>
+            Adds Task Message Attachment relation between objects
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveTaskMessageAttachmentRelation(System.Guid)">
+            <summary>
+            Removes Task Message Attachment relation between objects
+            </summary>
+            <returns>Fluent interface that enables you to modify the associated object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.CreateFileSnapshot(System.String)">
+            <summary>
+            Add file snapshot
+            </summary>
+            <param name="reason">Reason</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.MakeSnapshotActual(System.String,Ascon.Pilot.SDK.IFilesSnapshot)">
+            <summary>
+            Make actual
+            </summary>
+            <param name="reason">Reason</param>
+            <param name="snapshot">Selected files snapshot</param>
+            <returns></returns>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IObjectBuilder.DataObject">
+            <summary>
+            Gets the associated object
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IObjectsRepository">
+            <summary>
+            Represents the repository that enables to get access to objects, types, organisation units and people.
+            </summary>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeObjects(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Subsribes to changes in objects with specified identifiers
+            </summary>
+            <param name="ids">Identifiers of objects to subsribe</param>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeTasks(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Subsribes to changes in objects with specified identifiers
+            </summary>
+            <param name="ids">Identifiers of objects to subsribe</param>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeWorkflow(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Subsribes to changes in workflow objects with specified identifiers
+            </summary>
+            <param name="ids">Identifiers of workflow objects to subsribe</param>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeStageObjects(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Subsribes to changes in stage objects with specified identifiers
+            </summary>
+            <param name="ids">Identifiers of stage objects to subsribe</param>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeTaskMessages(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Subsribes to changes in task messages with specified identifiers
+            </summary>
+            <param name="ids">Identifiers of task messages to subsribe</param>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetCachedObject(System.Guid)">
+            <summary>
+            Gets the object with specified identifier from cache. If object doesn't exist in cache, return blank(empty) object.
+            </summary>
+            <remarks>This method does not download or update object.</remarks>
+            <param name="id">Object identifier</param>
+            <returns>Desired object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetRootObject">
+            <summary>
+            Get the root object 
+            </summary>
+            <returns>Get the root object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetPerson(System.Int32)">
+            <summary>
+            Gets the person with specified identifier
+            </summary>
+            <param name="id">Person identifier</param>
+            <returns>Desired person</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetPeople">
+            <summary>
+            Gets all the people registred in database
+            </summary>
+            <returns>Collection of people registred in database</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribePeople">
+            <summary>
+            Subsribes to changes in people
+            </summary>
+            <returns>Provider for change notifications</returns>
+            
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetCurrentPerson">
+            <summary>
+            Gets the current person
+            </summary>
+            <returns>Current person</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetType(System.Int32)">
+            <summary>
+            Gets type by identifier
+            </summary>
+            <param name="id">Type identifier</param>
+            <returns>Desired type</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetType(System.String)">
+            <summary>
+            Gets type by name
+            </summary>
+            <param name="name">Type name</param>
+            <returns>Desired type</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetTypes">
+            <summary>
+            Gets all the types registered in database
+            </summary>
+            <returns>Collection of types registered in database</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeTypes">
+            <summary>
+            Subsribes to changes in types
+            </summary>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetOrganisationUnit(System.Int32)">
+            <summary>
+            Gets organisation unit by identifier
+            </summary>
+            <param name="id">Organisation unit identifier</param>
+            <returns>Desired organisation unit</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetOrganisationUnits">
+            <summary>
+            Get all the organisation units registered in database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeOrganisationUnits">
+            <summary>
+            Subsribes to changes in organisation units
+            </summary>
+            <returns>Provider for change notifications</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.SubscribeNotification(Ascon.Pilot.SDK.NotificationKind)">
+            <summary>
+            Subsribes to notifications
+            </summary>
+            <param name="kind">type of notification</param>
+            <returns>Provider for change notification</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetDatabaseId">
+            <summary>
+            Returns the identifier of the current database
+            </summary>
+            <returns>Database identifier</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetStoragePath">
+            <summary>
+            Gets a pilot-storage root path
+            </summary>
+            <returns>Pilot-storage root path</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetStorageObjects(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets a set of pilot storage data objects by their absolute paths
+            </summary>
+            <param name="paths">Absolute paths collection</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.DataState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.DataState.Unknown">
+            <summary>
+            default state
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.DataState.NoData">
+            <summary>
+            Object is not loaded
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.DataState.Loaded">
+            <summary>
+            Object is loaded
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.DataState.NonExistent">
+            <summary>
+            Object not exists on a server
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.SynchronizationState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SynchronizationState.Synchronized">
+            <summary>
+            Object is synchronized with a server
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SynchronizationState.AwaitingForSynchronization">
+            <summary>
+            Object is awaiting synchronization with a server
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SynchronizationState.SynchronizationAborted">
+            <summary>
+            A server rejected the changes to the object
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IDataObject">
+            <summary>
+            Represents the object with it's attributes and relations
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Id">
+            <summary>
+            Gets the object's identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.ParentId">
+            <summary>
+            Gets the parent object's identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Created">
+            <summary>
+            Gets the object creation time
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Attributes">
+            <summary>
+            Gets the object attributes
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.DisplayName">
+            <summary>
+            Gets the object name to be displayed
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Type">
+            <summary>
+            Gets the type of the current object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Creator">
+            <summary>
+            Gets the object creator
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Children">
+            <summary>
+            Gets the collection of the child object identifiers
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.RelatedSourceFiles">
+            <summary>
+            Gets ids list of objects that refer to the current object via the "Source File" relation
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.RelatedTaskInitiatorAttachments">
+            <summary>
+            Gets ids list of objects that refer to the current object via the "Task Initiator Attachment" relation
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.RelatedTaskMessageAttachments">
+            <summary>
+            Gets ids list of objects that refer to the current object via the "Task Message Attachment" relation
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.TypesByChildren">
+            <summary>
+            Allows to get type identifier by child object identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.State">
+            <summary>
+            Get the data state of the object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.SynchronizationState">
+            <summary>
+            Get the synchronization state of the object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Files">
+            <summary>
+            Get the files collection of the actual files snapshot
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.Access">
+            <summary>
+            Get the object access rights
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.IsSecret">
+            <summary>
+            Get is secret flag
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.IsDeleted">
+            <summary>
+            Object is permanently deleted
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.IsInRecycleBin">
+            <summary>
+            Object is in RecycleBin
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.ActualFileSnapshot">
+            <summary>
+            Gets the current file snapshot
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IDataObject.PreviousFileSnapshots">
+            <summary>
+            Gets the previous collection of the file snapshots
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IOrganisationUnit">
+            <summary>
+            Represents the organisation unit with it's attributes and relations
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IOrganisationUnit.Id">
+            <summary>
+            Gets the organisation unit identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IOrganisationUnit.Title">
+            <summary>
+            Gets the organisation unit title
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IOrganisationUnit.IsDeleted">
+            <summary>
+            Indicates whether the organisation unit is deleted or not
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IOrganisationUnit.Children">
+            <summary>
+            Gets the collection of child organisation units
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IOrganisationUnit.IsPosition">
+            <summary>
+            Gets a value that indicates whether this organisation unit is position
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IPerson">
+            <summary>
+            Represents the person with it's attributes and the positions he hold
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.Id">
+            <summary>
+            Gets the person identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.Login">
+            <summary>
+            Gets the person login
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.DisplayName">
+            <summary>
+            Gets the person display name
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.Positions">
+            <summary>
+            Gets the collection of positions person hold
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.MainPosition">
+            <summary>
+            Gets the main person position
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.Comment">
+            <summary>
+            Gets the comment for person
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.Sid">
+            <summary>
+            Get the security identifier used for the Windows authentication
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.IsDeleted">
+            <summary>
+            Indicates whether the person is deleted or not
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.IsAdmin">
+            <summary>
+            Indicates whether the person has administrator rights
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPerson.ActualName">
+            <summary>
+            Gets the actual name to be displayed. When the <see cref="P:Ascon.Pilot.SDK.IPerson.DisplayName"/> property is null, <see cref="P:Ascon.Pilot.SDK.IPerson.Login"/> is used
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IPosition">
+            <summary>
+            Represents a posistion person hold
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPosition.Order">
+            <summary>
+            Sort order
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IPosition.Position">
+            <summary>
+            Position identifier
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.ITaskObject">
+            <summary>
+            Represents a task object with it's attributes
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Id">
+            <summary>
+            Task identifier
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Initiator">
+            <summary>
+            Task initiator person
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Executor">
+            <summary>
+            Task executor person
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Created">
+            <summary>
+            Task created date
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Attributes">
+            <summary>
+            Task attributes collection
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.InitiatorAttachments">
+            <summary>
+            Task iniator attachments
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.ExecutorAttachments">
+            <summary>
+            Task executor attachments
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.State">
+            <summary>
+            Identifier of the chat object that contains task messages
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.DataState">
+            <summary>
+            Get the data state of the object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Title">
+            <summary>
+            Task title
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.Description">
+            <summary>
+            Task description
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.DeadlineDate">
+            <summary>
+            Task deadline date
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.DateOfAssignment">
+            <summary>
+            Task assignment date
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.DateOfCompletion">
+            <summary>
+            Task date of completion
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.DisplayTitle">
+            <summary>
+            Task title to display
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.IsAgreementTask">
+            <summary>
+            Indicates whether the task is agreement task
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.SynchronizationState">
+            <summary>
+            Get the synchronization state of the object
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.ChatId">
+            <summary>
+            Get the ID of Chat
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.IsVersion">
+            <summary>
+            Indicates whether the task is version
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.State">
+            <summary>Describes all possible states of the Workflow</summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.State.None">
+            <summary>Черновик</summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.State.Assigned">
+            <summary>Выдано</summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.State.InProgress">
+            <summary>В работе</summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.State.Revoked">
+            <summary>Отозвано</summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.State.OnValidation">
+            <summary>На проверке</summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.State.Completed">
+            <summary>Выполнено</summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IWorkflowObject">
+            <summary>
+            Represents the workflow with it's attributes
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IWorkflowObject.Id">
+            <summary>
+            Gets workflow ID
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IWorkflowObject.Title">
+            <summary>
+            Gets workflow title
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IWorkflowObject.Description">
+            <summary>
+            Gets workflow description
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IWorkflowObject.InitiatorAttachments">
+            <summary>
+            Get the collection of the initiator attachments
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.IStageObject">
+            <summary>
+            Represents the stage with it's attributes
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStageObject.Id">
+            <summary>
+            Gets stage ID
+            </summary>
+        </member>
+        <member name="P:Ascon.Pilot.SDK.IStageObject.Order">
+            <summary>
+            Gets stage order
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.SystemAttributeNames">
+            <summary>
+            List of predefined system attribute names
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.DELETE_DATE">
+            <summary>
+            Date of deletion
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.DELETE_INITIATOR_PERSON">
+            <summary>
+            Person identifier that indicates who have deleted this object
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.DELETE_INITIATOR_POSITION">
+            <summary>
+            Position identifier that indicates who have deleted this object
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.SEARCH_CRITERIA">
+            <summary>
+            Smart folder search criteria
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.SMART_FOLDER_TITLE">
+            <summary>
+            Smart folder title
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.SEARCH_CONTEXT_OBJECT_ID">
+            <summary>
+            Identifier of object which is used as a smart folder search context
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.IS_HIDDEN">
+            <summary>
+            Indicates whether this file or folder on Pilot Storage is hidden
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.PROJECT_ITEM_NAME">
+            <summary>
+            Name of the file or folder on Pilot Storage
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_EXECUTOR_POSITION">
+            <summary>
+            Position identifiers of the task executor
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_EXECUTOR_ROLE">
+            <summary>
+            Role of the task executor
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_STATE">
+            <summary>
+            State of the task
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DEADLINE_DATE">
+            <summary>
+            Task deadline date
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_WITH_VALIDATION_PHASE">
+            <summary>
+            Indicates whether task requires validation after completion
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_INITIATOR_POSITION">
+            <summary>
+            Position identifier of the task initiator
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_TITLE">
+            <summary>
+            Task title
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DESCRIPTION">
+            <summary>
+            Task description
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_STAGE_ORDER">
+            <summary>
+            Task stage order
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DATE_OF_ASSIGNMENT">
+            <summary>
+            Date of the task assignment
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_MESSAGE_TEXT_ATTRIBUTE_NAME">
+            <summary>
+            Text of task message
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_AGREEMENT">
+            <summary>
+            Indicates whether the task is agreement task
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_BY_COPY_TO">
+            <summary>
+            Not implemented yet
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_IS_VERSION">
+            <summary>
+            Indicates whether the task is version or actual
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DATE_OF_COMPLETION">
+            <summary>
+            Date of the task completion
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.EXTENSION_FOLDER_NAME">
+            <summary>
+            Name of extension folder
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.EXTENSION_NAME">
+            <summary>
+            Name of extension
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.EXTENSION_ADDITIONAL">
+            <summary>
+            Additional information about extension
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.SHORTCUT_OBJECT_ID">
+            <summary>
+            Identifier of the real object shortcut refers to
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.REPORT_FOLDER_NAME">
+            <summary>
+            Name of the report folder
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.REPORT_NAME">
+            <summary>
+            Name of the report
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.CREATION_TIME">
+            <summary>
+            For internal use only
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.SystemObjectIds">
+            <summary>
+            List of predefined system objects ids
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemObjectIds.RootObjectId">
+            <summary>
+            Root object id
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemObjectIds.TaskRootObjectId">
+            <summary>
+            Task root object id
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemObjectIds.ExtensionRootObjectId">
+            <summary>
+            Extension root object id
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemObjectIds.ReportRootObjectId">
+            <summary>
+            Report root object id
+            </summary>
+        </member>
+        <member name="T:Ascon.Pilot.SDK.SystemTypeNames">
+            <summary>
+            List of predefined system type names
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.PROJECT_FOLDER">
+            <summary>
+            Folder at Pilot Storage
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.PROJECT_FILE">
+            <summary>
+            File at Pilot Storage
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.TASK">
+            <summary>
+            Task or task version
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.TASK_STAGE">
+            <summary>
+            Task stage
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.TASK_WORKFLOW">
+            <summary>
+            Task workflow
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.TASK_FOLDER">
+            <summary>
+            Task folder
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.TASK_CHAT">
+            <summary>
+            Task chat
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.TASK_CHAT_MESSAGE">
+            <summary>
+            Task message
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.EXTENSION">
+            <summary>
+            Extension
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.EXTENSION_FOLDER">
+            <summary>
+            Extension folder
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.SHORTCUT">
+            <summary>
+            Shortcut
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.REPORT">
+            <summary>
+            Report
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.REPORT_FOLDER">
+            <summary>
+            Report folder
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemTypeNames.SMART_FOLDER">
+            <summary>
+            Smart Folder
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -546,7 +546,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             if (content.Count == 0)
             {
-                s = ((TreeViewModel)((CreateProject)((PureWindow)((UserControl)((Grid)((TabControl)((TabItem)((UserControl)((Grid)((ScrollViewer)((StackPanel)sender).Parent).Parent).Parent).Parent).Parent).Parent).Parent).Parent).Content).DataContext);
+                s = ((TreeViewModel)DataContext);
                 if (AttributeProject == null)
                     AttributeProject = s.AttributeProject;
                 

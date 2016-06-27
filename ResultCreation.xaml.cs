@@ -38,7 +38,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((DialogWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+            ((DialogWindow)Parent).Close();
         }
 
         private void rbt_SelectionChanged(object sender, SelectionChangedEventArgs e)

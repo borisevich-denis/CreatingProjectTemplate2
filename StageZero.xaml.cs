@@ -28,11 +28,11 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var s1 = ((PureWindow)((UserControl)((Grid)((TabControl)((TabItem)((UserControl)((Grid)((TreeView)sender).Parent).Parent).Parent).Parent).Parent).Parent).Parent);
+           // var s1 = ((PureWindow)((UserControl)((Grid)((TabControl)((TabItem)((UserControl)((Grid)((TreeView)sender).Parent).Parent).Parent).Parent).Parent).Parent).Parent);
             TreeViewModel s = null;
 
-            if (s1.Content is CreateProject) s = ((TreeViewModel)((CreateProject)s1.Content).DataContext);
-            else if (s1.Content is CreateProjectStructure) s = ((TreeViewModel)((CreateProjectStructure)s1.Content).DataContext);
+             s = ((TreeViewModel)DataContext);
+            //else if (s1.Content is CreateProjectStructure) s = ((TreeViewModel)((CreateProjectStructure)s1.Content).DataContext);
 
             var selectedObject = TreeView.SelectedValue as ElementNodeViewModel;//+++
             if (selectedObject.TypeObj == s.NameTypeProject)

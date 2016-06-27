@@ -64,7 +64,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {         
-            ((Ascon.Pilot.Theme.Controls.DialogWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+            ((Ascon.Pilot.Theme.Controls.DialogWindow)Parent).Close();
         }
 
         

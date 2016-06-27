@@ -107,6 +107,9 @@
       <DependentUpon>ResultCreation.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="StageCreate.xaml.cs">
+      <DependentUpon>StageCreate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StageOne.xaml.cs">
       <DependentUpon>StageOne.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
     <Page Include="ResultCreation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StageCreate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="StageOne.xaml">
       <SubType>Designer</SubType>

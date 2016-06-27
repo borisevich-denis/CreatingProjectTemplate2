@@ -101,7 +101,7 @@
             <TabItem Header="StageThree" Margin="0,0,0,0" BorderThickness="0" Visibility="Collapsed">
                 <local:StageThree Margin="0,0,0,0"/>
             </TabItem>
-
+            
         </TabControl>
 
 

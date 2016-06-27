@@ -30,14 +30,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             //_selection = selection;
             InitializeComponent();
-            //  nameTypeProject = _nameTypeProject;
-            /*   var b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon1.ToBitmap();
-               ImageNext.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(),IntPtr.Zero,Int32Rect.Empty,BitmapSizeOptions.FromEmptyOptions());
-               b = Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.Icon2.ToBitmap();
-               ImageBack.Source = Imaging.CreateBitmapSourceFromHBitmap(b.GetHbitmap(),IntPtr.Zero,Int32Rect.Empty,BitmapSizeOptions.FromEmptyOptions());
-               textBack.Text = "Назад";
-               textNext.Text = "Далее";*/
-            //_win = win;
+           
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
@@ -49,14 +42,15 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     // создание
 
                     var s = (TreeViewModel)DataContext;
-                    DialogWindow dw = new DialogWindow();//+++
-                    dw.Title = "Создание структуры проекта";
-                    dw.Content = new ResultCreation() { DataContext = s };//+++
-                    dw.Show();
+                    //DialogWindow dw = new DialogWindow();//+++
+                   // dw.Title = "Создание структуры проекта";
+                   // dw.Content = new StageCreate() { DataContext = s };//+++
+                   // dw.Show();
+                    ((PureWindow)Parent).Content = new StageCreate() { DataContext = s };
                     s.CreateUpProject(false);
                    // ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
-                    ((PureWindow)Parent).Close();
-                    ((TreeViewModel)DataContext).Dispose();
+                 //   ((PureWindow)Parent).Close();
+                  //  ((TreeViewModel)DataContext).Dispose();
 
                 }
 
@@ -161,7 +155,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 dw.Content = new ResultCreation() { DataContext = s };
                 dw.Show();
 
-                ((PureWindow)((UserControl)((Grid)((Button)sender).Parent).Parent).Parent).Close();
+                ((PureWindow)Parent).Close();
             }
             else MessageBox.Show("Заполнены не все обязательные атрибуты");
 

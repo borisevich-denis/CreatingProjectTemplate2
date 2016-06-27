@@ -47,6 +47,11 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private readonly ObservableCollection<Result> _resultCreation;
         private Catalog opDialog;
 
+        private bool _CreateCompleted = false;
+        private Visibility _visability = Visibility.Visible;
+        private string _NameTitleToCreateProject;
+        private string _processStatus;
+
         //private string _resultOpenDialog;
         private bool _getAllAttributes;
 
@@ -63,7 +68,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private DataObjectWrapper CBParent;
         private ObservableCollection<ItemCB> _CBItems;
         private string CBAttr;
-
+        private int _indexCreate;
+        private int _countCreate;
 
         private Dictionary<string, object> attributes = new Dictionary<string, object>();
         //private GetDataObj getDObj;
@@ -116,6 +122,71 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 _getAllAttributes = value;
                 NotifyPropertyChanged("getAllAttributes");
+            }
+        }
+        public bool CreateCompleted
+        {
+            get { return _CreateCompleted; }
+            set
+            {
+                _CreateCompleted = value;
+                if (value == true)
+                {
+                    visability = Visibility.Collapsed;
+                }
+                NotifyPropertyChanged("CreateCompleted");
+            }
+        }
+
+        public int indexCreate
+        {
+            get { return _indexCreate; }
+            set
+            {
+                if (_indexCreate < _countCreate)
+                {
+                    _indexCreate = value;
+                    NotifyPropertyChanged("indexCreate");
+                }
+            }
+        }
+        public Visibility visability
+        {
+            get { return _visability; }
+            set
+            {
+                _visability = value;
+                NotifyPropertyChanged("visability");
+            }
+
+        }
+        public int countCreate
+        {
+            get { return _countCreate; }
+            set
+            {
+                _countCreate = value;
+                NotifyPropertyChanged("countCreate");
+            }
+        }
+
+        public string NameTitleToCreateProject
+        {
+            get { return _NameTitleToCreateProject; }
+            set
+            {
+                _NameTitleToCreateProject = value;
+                NotifyPropertyChanged("NameTitleToCreateProject");
+            }
+        }
+
+        public string processStatus
+        {
+            get { return _processStatus; }
+            set
+            {
+                _processStatus = value;
+                NotifyPropertyChanged("processStatus");
             }
         }
 
@@ -364,7 +435,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             else if (selectSample != null)
                 if (selectSample.Source.Children.ToList().Exists(n => n == value.Id))
                 {
-                    if (value.Type.HasFiles == false && value.Type.Name != "File" && value.Type.Name != "Project_folder" && "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8" != value.Type.Name)
+                    var s = value.Type.Name;
+                    if (value.Type.HasFiles == false && value.Type.Name != "File" && value.Type.Name != "Smart_folder_type"	 && value.Type.Name != "Project_folder" && "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8" != value.Type.Name)
                         if (!_TreeObj.ToList().Exists(n => n.Id == value.Id))
                             _TreeObj.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeObj", nameTypeProject, nameTypeProjectFolder));
                         else
@@ -563,7 +635,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     foreach (var itemCatalog in _itemsCatalog)
                     {
                         if (itemCatalog != _itemsCatalog[ItemsCatalog.Count - 1])
-                        if (itemCatalog.DisplayName.IndexOf(opDialog.TextSearch) > -1)
+                            if (itemCatalog.DisplayName.ToUpper().IndexOf(opDialog.TextSearch.ToUpper()) > -1)
                         {
                             newSearchItemsCatalog.Add(itemCatalog);
                         }
@@ -673,24 +745,55 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
 
 
+        private int SelectCount()
+        {
+            int count = 0;
+            foreach (var obj in _TreeObj)
+            {
+                count += SelectCount(obj);
+                count += 1;
+            }
+            foreach (var obj in _TreeStorage)
+            {
+                count += SelectCount(obj);
+                count += 1;
+            }
 
+            return count;
+        }
+
+        private int SelectCount(ElementNodeViewModel elem)
+        {
+            int count = 0;
+            foreach (var obj in elem.ChildNodes)
+            {
+                count += SelectCount(obj);
+                count += 1;
+            }
+
+            return count;
+        }
 
         public bool CreateUpProject(bool b)
         {
-
+            NameTitleToCreateProject = "Выполняется создание структуры проекта";
             bool b2 = true;
             if (b)
             {
+                countCreate = SelectCount();
                 b2 = UpProject(_parent);
             }
             else if (!b)
             {
+                countCreate = SelectCount();
                 createProject(_parent, attributes);
             }
             if (modifier && b2)
                 _modifier.Apply();
 
-            AddItemResult(null, "Готово");
+            NameTitleToCreateProject = "Создание структуры проекта успешно завершено!";
+            CreateCompleted = true;
+            //AddItemResult(null, "Готово");
             return b2;
         }
 
@@ -811,8 +914,10 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private void AddItemResult(IType typeObj, string Text)
         {
             _resultCreation.Add(new Result(typeObj, Text));
-
-            NotifyPropertyChanged("_resultCreation");        
+            if (Text[0].ToString() != "-")
+            processStatus = Text;
+            indexCreate += 1;
+            NotifyPropertyChanged("resultCreation");        
         }
 
         public void Dispose()
@@ -928,11 +1033,13 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 //foreach (var obj in _TreeObj)
                 // {
+
                 comparisonStructure(null, _TreeObj, Parent, CopyAccessObj);
                 //  }
 
                 //  foreach (var obj in _TreeStorage)
                 //  {
+
                 comparisonStructure(null, _TreeStorage, Parent, CopyAccessStorage);
                 //  }
             }
