@@ -28,8 +28,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private const string ProjectTemplate = "ProjectTemplate";
         private const string ProjectFolderTemplate = "ProjectFolderTemplate";
 
-        private string nameTypeProjectFolder;
-        private string nameTypeProject;
+        private string nameTypeProjectFolder = "";
+        private string nameTypeProject = "";
 
         [ImportingConstructor]
         public ContextMenu(IPersonalSettings personalSettings, ITabServiceProvider tabServiceProvider, IFileProvider fileProvider, IObjectModifier modifier, IObjectsRepository repository, IPilotDialogService pilotDialogService)
