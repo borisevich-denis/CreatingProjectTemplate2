@@ -121,7 +121,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     _createProject.DataContext = new TreeViewModel(_pilotDialogService, _tabServiceProvider, _repository, _selection, _modifier, _fileProvider, _personalSettings, nameTypeProjectFolder, nameTypeProject);//+++
                     //var window = new PureWindow { Content = _createProject };
                     window.Content = _createProject;
-                    window.Title = "Мастер создания cструктуры проекта по шаблону";
+                    window.Title = "Мастер создания cтруктуры проекта по шаблону";
                     window.Show();//+++
                 }
             }
