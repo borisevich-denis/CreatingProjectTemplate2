@@ -137,7 +137,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((TreeViewModel)DataContext).Dispose();
+            //((TreeViewModel)DataContext).Dispose();
                 ((PureWindow)Parent).Close();
          //   ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
         }

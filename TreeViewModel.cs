@@ -424,7 +424,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 if (value.Type.Name == nameTypeProjectFolder)// 3
                 {
                     if (!_TreeProject.ToList().Exists(n => n.Id == value.Id))
-                        _TreeProject.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeProject", nameTypeProject, nameTypeProjectFolder));
+                        _TreeProject.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeProject", nameTypeProject, nameTypeProjectFolder,false));
                     else
                     {
                         var node = _TreeProject.First(n => n.Id == value.Id);
@@ -438,7 +438,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     var s = value.Type.Name;
                     if (value.Type.HasFiles == false && value.Type.Name != "File" && value.Type.Name != "Smart_folder_type"	 && value.Type.Name != "Project_folder" && "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8" != value.Type.Name)
                         if (!_TreeObj.ToList().Exists(n => n.Id == value.Id))
-                            _TreeObj.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeObj", nameTypeProject, nameTypeProjectFolder));
+                            _TreeObj.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeObj", nameTypeProject, nameTypeProjectFolder,true));
                         else
                         {
                             var node = _TreeObj.First(n => n.Id == value.Id);
@@ -447,7 +447,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
                     if (value.Type.Name == "File" || value.Type.Name == "Project_folder")
                         if (!_TreeStorage.ToList().Exists(n => n.Id == value.Id))
-                            _TreeStorage.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeStorage", nameTypeProject, nameTypeProjectFolder));
+                            _TreeStorage.Add(new ElementNodeViewModel(_tabServiceProvider, null, value, _repository, "_TreeStorage", nameTypeProject, nameTypeProjectFolder, true));
                         else
                         {
                             var node = _TreeStorage.First(n => n.Id == value.Id);
@@ -819,8 +819,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 //обновляем структуру                
 
-                _selectTreeObj.Add(new ElementNodeViewModel(_tabServiceProvider, null, project, _repository, "_TreeObj", nameTypeProject, nameTypeProjectFolder));
-                _selectTreeStorage.Add(new ElementNodeViewModel(_tabServiceProvider, null, project, _repository, "_TreeStorage", nameTypeProject, nameTypeProjectFolder));
+                _selectTreeObj.Add(new ElementNodeViewModel(_tabServiceProvider, null, project, _repository, "_TreeObj", nameTypeProject, nameTypeProjectFolder,true));
+                _selectTreeStorage.Add(new ElementNodeViewModel(_tabServiceProvider, null, project, _repository, "_TreeStorage", nameTypeProject, nameTypeProjectFolder,true));
 
                 createUpdateStructure(project, true);
                 return true;

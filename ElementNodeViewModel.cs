@@ -24,7 +24,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private DataObjectWrapper _source;
         private readonly IObjectsRepository _repository;
         private readonly ObservableCollection<ElementNodeViewModel> _childNodes;        
-        private bool _isExpanded = true;
+        private bool _isExpanded;
         private readonly string _tree;
         private bool _check;
         private readonly ITabServiceProvider _tabServiceProvider;
@@ -40,9 +40,9 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             DisplayName = "Loading";
         }
 
-        public ElementNodeViewModel(ITabServiceProvider tabServiceProvider, ElementNodeViewModel parend, IDataObject source, IObjectsRepository repository, string tree, string _nameTypeProject, string _nameTypeProjectFolder)
+        public ElementNodeViewModel(ITabServiceProvider tabServiceProvider, ElementNodeViewModel parend, IDataObject source, IObjectsRepository repository, string tree, string _nameTypeProject, string _nameTypeProjectFolder, bool Expanded)
         {
-           
+            _isExpanded = Expanded;
             nameTypeProject = _nameTypeProject;
             nameTypeProjectFolder = _nameTypeProjectFolder;
             _tabServiceProvider = tabServiceProvider;
@@ -377,7 +377,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                             if (value.Type.HasFiles == false && value.Type.Name != "Shortcut_E67517F1-93F5-4756-B651-133B816D43C8" && value.Type.Name != "Smart_folder_type")
                             {
                                 if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
-                                    _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider, this, value, _repository, _tree, nameTypeProject,nameTypeProjectFolder));
+                                    _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider, this, value, _repository, _tree, nameTypeProject,nameTypeProjectFolder,true));
                                 else
                                 {
                                     var node = _childNodes.First(n => n.Id == value.Id);
@@ -409,7 +409,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                             _childNodes.Clear();
 
                         if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
-                            _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider,this, value, _repository, _tree,nameTypeProject,nameTypeProjectFolder));
+                            _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider,this, value, _repository, _tree,nameTypeProject,nameTypeProjectFolder,true));
                         else
                         {
                             var node = _childNodes.First(n => n.Id == value.Id);
@@ -429,7 +429,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                                 _childNodes.Clear();
 
                             if (!_childNodes.ToList().Exists(n => n.Id == value.Id))
-                                _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider,this, value, _repository, _tree,nameTypeProject,nameTypeProjectFolder));
+                                _childNodes.Add(new ElementNodeViewModel(_tabServiceProvider,this, value, _repository, _tree,nameTypeProject,nameTypeProjectFolder,false));
                             else
                             {
                                 var node = _childNodes.First(n => n.Id == value.Id);
