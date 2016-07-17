@@ -34,6 +34,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public string Attr { get; set; }
         public string name { get; set; }
         public List<string> Items { get; set; }
+        public string Config { get; set; }
         public ObservableCollection<ItemCB> _ItemsCB { get; set; }
        // public bool IsEditable { get; set; }
         public Content()
@@ -430,7 +431,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
                                }*/
                              var __type = _attr.Type.ToString();
-
+                             content[content.Count - 1].Config = _attr.Configuration;
                              if (_attr.Type.ToString() == "String")
                              {
                                  if (_attr.Configuration == "" || _attr.Configuration == null)
@@ -556,8 +557,50 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
+        private string ResultCatalog(IEnumerable<IDataObject> _itemsCatalog, List<string> _attr)
+        {
+            var AttrItems = "";
+           // var s = attrToList(_attr);
+            foreach (var itemCatalog in _itemsCatalog)
+            {
+                //if (itemCatalog.isCheck)
+               // {
+                    if (AttrItems.Length > 0)
+                    {
+                        AttrItems += "; ";
+                    }
+                    var attr = "";
+                
+                    foreach (var atr in itemCatalog.Attributes)
+                    {
+                        if (_attr.Exists(x => x == atr.Key))
+                        {
+                            if (attr.Length > 0)
+                            {
+                                attr += " - ";
+                            }
+                            attr += atr.Value;
+                        }
+                    } AttrItems += attr;
+                //}
+            }
+            return AttrItems;
+        }
 
 
+        private List<string> attrToList(string attr)
+        {
+            var _attr = new List<string>();
+            var i = attr.IndexOf("{");
+            while (i > -1)
+            {
+                attr = attr.Remove(0, i + 1);
+                i = attr.IndexOf("}");
+                _attr.Add(attr.Remove(i));
+                i = attr.IndexOf("{");
+            }
+            return _attr;
+        }
 
         public void OpenDialog(object sender, RoutedEventArgs e)
         {
@@ -565,8 +608,33 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 var i = content.ToList().FindIndex(n => n.button == sender);
               //  var items = GetItemsCB(content[i].Attr, content[i].Key);
-
-                content[i].textBox.Text = ((TreeViewModel)DataContext).openDialog(content[i].Attr, content[i].Key);
+                var objItems = ((TreeViewModel)DataContext).openDialog(content[i].Config);
+                if (objItems.ToList().Count > 0)
+                {
+                    content[i].textBox.Text = ResultCatalog(objItems, attrToList(content[i].Attr));
+                    foreach (var a in objItems.ToList()[0].Attributes)
+                    {
+                        if (content.Exists(x => x.name == a.Key))
+                        {
+                            var z = content.FindIndex(x => x.name == a.Key);
+                            if (i != z)
+                            {
+                                if (content[z].combobox != null)
+                                {
+                                    content[z].combobox.Text = ResultCatalog(objItems, new List<string>() {a.Key.ToString()});                                   
+                                }                                
+                                else if (content[z].textBox != null)
+                                {
+                                    content[z].textBox.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
+                                }
+                                else if (content[z].BEdit != null)
+                                {
+                                    content[z].BEdit.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
+                                }                              
+                            }
+                        }
+                    }
+                }
                 /* string atr = "";
                  foreach (var item in ItemsAttr)
                  {

@@ -552,11 +552,14 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
               }
           }*/
 
-        public string openDialog(string attr, string key)
+        public IEnumerable<IDataObject> openDialog(string config)
         {
             //   new Ascon.Pilot.Theme.Controls.DialogWindow().Title
 
-            GetItemsCatalog(attr, key);
+         return _pilotDialogService.ShowReferenceBookDialog(config);
+            
+            
+            /*GetItemsCatalog(attr, key);
             _SelectElementCatalogModel = false;
             DialogWindow dw = new DialogWindow();
             opDialog = new Catalog();
@@ -565,26 +568,27 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             dw.DataContext = this;
             dw.ShowDialog();
             
-            return ResultCatalog();
+            return ResultCatalog();*/
 
             //  System.Windows.MessageBox.Show("");
 
         }
 
-        private string ResultCatalog()
+        /*private string ResultCatalog(IEnumerable<IDataObject> _itemsCatalog)
         {
             var AttrItems = "";
-
+attrToList(attr)
             foreach (var itemCatalog in _itemsCatalog)
             {
-                if (itemCatalog.isCheck)
-                {
+                //if (itemCatalog.isCheck)
+               // {
                     if (AttrItems.Length > 0)
                     {
                         AttrItems += "; ";
                     }
                     var attr = "";
-                    foreach (var atr in itemCatalog.Attr)
+                
+                    foreach (var atr in itemCatalog.Attributes)
                     {
                         if (attr.Length > 0)
                         {
@@ -593,12 +597,12 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         attr += atr.Value;
 
                     } AttrItems += attr;
-                }
+                //}
             }
-            foreach (var itemCatalog in _searchItemsCatalog)
+           /* foreach (var itemCatalog in _searchItemsCatalog)
             {
-                if (itemCatalog.isCheck)
-                {
+                //if (itemCatalog.isCheck)
+               // {
                     if (AttrItems.Length > 0)
                     {
                         AttrItems += "; ";
@@ -612,11 +616,11 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         }
                         attr += atr.Value;
                     } AttrItems += attr;
-                }
-            }
+               //}
+            } */
 
-            return AttrItems;
-        }
+          //  return AttrItems;
+       // }
         public DelegateCommand Search
         {
             get
