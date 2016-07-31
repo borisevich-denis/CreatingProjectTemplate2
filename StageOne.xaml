@@ -4,8 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             
+             xmlns:system="clr-namespace:System;assembly=mscorlib"             
              xmlns:theme="clr-namespace:Ascon.Pilot.Theme;assembly=Ascon.Pilot.Theme"
              xmlns:local="clr-namespace:Ascon.Pilot.SDK.CreatingProjectTemplate"
              mc:Ignorable="d" 
@@ -40,23 +39,18 @@
 
                 </Grid>
             </HierarchicalDataTemplate>
-
             <system:String x:Key="CurrentPersonFormatString">Current person {0}</system:String>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <TreeView Name="TreeView"  Margin="0,25,0,0" ItemsSource="{Binding TreeObj}" BorderThickness="1" Foreground="Black" BorderBrush="{x:Null}">
-
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}" d:DataContext="{d:DesignInstance ElementNodeViewModel}">
                     <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
                 </Style>
-
             </TreeView.Resources>
-
         </TreeView>
-
 
         <StackPanel Orientation="Horizontal">
         <TextBlock HorizontalAlignment="Left" Margin="0,0,7,0" TextWrapping="Wrap" VerticalAlignment="Top" TextDecorations="{x:Null}">
@@ -79,8 +73,6 @@
         </TextBlock>
         </StackPanel>
         <CheckBox x:Name="checkbox2" Content="Скопировать права доступа для выбранных папок и файлов" Margin="0" VerticalAlignment="Top" IsChecked="{Binding CopyAccessObj}" Foreground="Black" HorizontalAlignment="Right"/>
-
-
 
     </Grid>
 </UserControl>

@@ -20,36 +20,32 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
     /// </summary>
     public partial class StageOne : UserControl
     {
-       
+
         public StageOne()
         {
             InitializeComponent();
-            
-           // cb.DataContext = itemcb;
-         //   Loaded += OnLoaded;
         }
 
         private void button1_Click()
-        {//выбрать
+        {
             var viewModel = (TreeViewModel)DataContext;
             foreach (var Elem in viewModel.TreeObj)
             {
                 Elem.Check = true;
                 CheckTree(Elem.ChildNodes, true);
             }
-            
         }
         private void CheckTree(ObservableCollection<ElementNodeViewModel> Tree, bool b)
         {
             foreach (var Elem in Tree)
             {
                 Elem.Check = b;
-                CheckTree(Elem.ChildNodes,b);
+                CheckTree(Elem.ChildNodes, b);
             }
         }
 
         private void button2_Click()
-        {//очистить
+        {
             var viewModel = (TreeViewModel)DataContext;
             foreach (var Elem in viewModel.TreeObj)
             {
@@ -86,28 +82,5 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 tProj.IsExpanded = true;
             }
         }
-
-      
-
-    /*     void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsSharingSettingsButtonEnabled();
-        }
-
-        
-
-        private void OnSelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            UpdateIsSharingSettingsButtonEnabled();
-        }
-
-        private void UpdateIsSharingSettingsButtonEnabled()
-        {
-            var selectedObject = TreeView.SelectedValue as ElementNodeViewModel;
-          //  SharingSettingsButton.IsEnabled = selectedObject != null;
-        }*/
-
-        
-        
     }
 }

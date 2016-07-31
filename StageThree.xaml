@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:theme="clr-namespace:Ascon.Pilot.Theme;assembly=Ascon.Pilot.Theme"
-             
+             xmlns:theme="clr-namespace:Ascon.Pilot.Theme;assembly=Ascon.Pilot.Theme"             
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -18,13 +17,9 @@
 
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <!--   <Image x:Name="qwe" HorizontalAlignment="Left" Height="100" Margin="10,0,0,87" VerticalAlignment="Bottom" Width="100"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="128,0,0,87" VerticalAlignment="Bottom" Width="75" Click="Button_Click_1"/>
--->
+    <Grid>       
        <ScrollViewer VerticalScrollBarVisibility="Auto" >
             <StackPanel x:Name="grid" Loaded="grid_Loaded" />
         </ScrollViewer>
-
     </Grid>
 </UserControl>

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:tools="clr-namespace:Ascon.Pilot.Theme.Tools;assembly=Ascon.Pilot.Theme"
-     xmlns:local="clr-namespace:Ascon.Pilot.SDK.CreatingProjectTemplate"
+             xmlns:tools="clr-namespace:Ascon.Pilot.Theme.Tools;assembly=Ascon.Pilot.Theme"
+             xmlns:local="clr-namespace:Ascon.Pilot.SDK.CreatingProjectTemplate"
              xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Ascon.Pilot.SDK.CreatingProjectTemplate.ResultCreation"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance {x:Type local:TreeViewModel}}">
+             d:DataContext="{d:DesignInstance {x:Type local:TreeViewModel}}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,21 +31,15 @@
                                 HorizontalAlignment="Left" 
                                 VerticalAlignment="Top"
                                 Grid.Column="2" Margin="3,0,0,0">
-
                     </TextBlock>
 
                 </Grid>
             </HierarchicalDataTemplate>
-
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-
         <ListBox x:Name="rbt" Margin="0,0,0,38" BorderBrush="{x:Null}" Background="{x:Null}" ItemsSource="{Binding resultCreation}" IsSynchronizedWithCurrentItem="True" SelectedIndex="{Binding Items.Count, ElementName=rbt, Mode=OneWay}" SelectionChanged="rbt_SelectionChanged">
-            <ListBox.Resources d:DataContext="{d:DesignInstance Result}">
-                
-
-            </ListBox.Resources>
+            <ListBox.Resources d:DataContext="{d:DesignInstance Result}"/>
         </ListBox>
         <StackPanel Height="28" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="6,0,0,0">
             <Button Content="Завершить" Click="Button_Click"/>

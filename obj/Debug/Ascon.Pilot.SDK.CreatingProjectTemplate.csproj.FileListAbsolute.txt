@@ -56,9 +56,7 @@ C:\Users\loodsman\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Asco
 C:\Users\loodsman\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
 C:\Users\loodsman\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
 C:\Users\loodsman\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csprojResolveAssemblyReference.cache
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\StageThree.baml
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Catalog.g.cs
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\CreateProjectStructure.g.cs
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\ResultCreation.g.cs
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\StageOne.g.cs
@@ -85,7 +83,6 @@ C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProj
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\bin\Debug\Ascon.Pilot.SDK.xml
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\StageCreate.baml
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\StageCreate.g.cs
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Catalog.baml
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\CreateProjectStructure.baml
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\ResultCreation.baml
 C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\StageOne.baml

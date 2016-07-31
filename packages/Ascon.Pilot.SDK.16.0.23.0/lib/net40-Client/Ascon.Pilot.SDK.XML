@@ -1074,6 +1074,13 @@
             </summary>
             <returns>The path of the pilot-storage root</returns>
         </member>
+        <member name="M:Ascon.Pilot.SDK.IStorageDataObjectProvider.GetStoragePath(System.Guid)">
+            <summary>
+            Gets a pilot-storage path of an object
+            </summary>
+            <param name="objId">object identifier</param>
+            <returns>Object filepath at Pilot-Storage. If object does not exist at Pilot-Storage, returns null</returns>
+        </member>
         <member name="M:Ascon.Pilot.SDK.IStorageDataObjectProvider.GetStorageItem(System.String)">
             <summary>
             Gets pilot-storage object that corresponds a file or folder
@@ -1634,6 +1641,15 @@
             <param name="type">Creating object type</param>
             <returns>Fluent interface that enables you to modify created object</returns>
         </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Create(System.Guid,Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IType)">
+            <summary>
+            Creates a new object
+            </summary>
+            <param name="id">New object identifier</param>
+            <param name="parent">Parent object</param>
+            <param name="type">Creating object type</param>
+            <returns>Fluent interface that enables you to modify created object</returns>
+        </member>
         <member name="M:Ascon.Pilot.SDK.IObjectModifier.Edit(Ascon.Pilot.SDK.IDataObject)">
             <summary>
             Edits existing object
@@ -1728,7 +1744,7 @@
             <param name="positionId">Person position id</param>
             <param name="level">Access level</param>
             <param name="validThrough">Rights valid through</param>
-            <param name="isInherited">A flag indicating whether or not inherit rights</param>
+            <param name="isInheritable">A flag indicating whether or not inherit rights</param>
             <returns>Fluent interface that enables you to modify the associated object</returns>
         </member>
         <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveAccessRights(System.Int32)">
@@ -1964,6 +1980,13 @@
             Gets a pilot-storage root path
             </summary>
             <returns>Pilot-storage root path</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetStoragePath(System.Guid)">
+            <summary>
+            Gets a pilot-storage path of an object
+            </summary>
+            <param name="objId">object identifier</param>
+            <returns>Object filepath at Pilot-Storage. If object does not exist at Pilot-Storage, returns null</returns>
         </member>
         <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetStorageObjects(System.Collections.Generic.IEnumerable{System.String})">
             <summary>

@@ -36,7 +36,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IFilesSnapshot">
             <summary>
-            Represents the files snapshot
+            Represents the temporary data transfer container that is used to obtain a files snapshot
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception. 
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IFilesSnapshot.Created">
@@ -338,7 +339,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IAttribute">
             <summary>
-            Represents the type's attribute
+            Represents the temporary data transfer container that is used to obtain an attribute of a type
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IAttribute.Name">
@@ -428,7 +430,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.INotification">
             <summary>
-            Represents the notification with it's features
+            Represents the temporary data transfer container that is used to obtain a notification with it's features
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.INotification.ObjectId">
@@ -551,6 +554,11 @@
             An attribute of the storage object has been changed
             </summary>
         </member>
+        <member name="F:Ascon.Pilot.SDK.NotificationKind.StorageObjectFileChanged">
+            <summary>
+            The file of the storage object has been changed
+            </summary>
+        </member>
         <member name="F:Ascon.Pilot.SDK.NotificationKind.TaskCreated">
             <summary>
             The task has been created
@@ -630,7 +638,7 @@
             Shows the documents explorer to select a pick up a document
             </summary>
             <param name="options">Dialog options </param>
-            <returns>A collection of selected objects</returns>
+            <returns>A collection of temporary data transfer containers that represent selected objects</returns>
         </member>
         <member name="M:Ascon.Pilot.SDK.IPilotDialogService.ShowTasksSelectorDialog(Ascon.Pilot.SDK.IPilotDialogOptions)">
             <summary>
@@ -638,6 +646,15 @@
             </summary>
             <param name="options">dialog options</param>
             <returns>A collection of selected tasks</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IPilotDialogService.ShowReferenceBookDialog(System.String,System.String,Ascon.Pilot.SDK.IPilotDialogOptions)">
+            <summary>
+            Shows a dialog that allows to check several objects from the described reference book
+            </summary>
+            <param name="referenceBookConfiguration">Configuration that describes the reference book to show</param>
+            <param name="serializationId">Identificator of the reference book tree state serialization. Typical id is "typeName-attrName" string. If id is null no serialization applied.</param>
+            <param name="options">Dialog options</param>
+            <returns></returns>
         </member>
         <member name="M:Ascon.Pilot.SDK.IPilotDialogService.NewOptions">
             <summary>
@@ -725,7 +742,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IFile">
             <summary>
-            Represents the file 
+            Represents the temporary data transfer container that is used to obtain a file 
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IFile.Id">
@@ -770,7 +788,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.ISignature">
             <summary>
-            Represents the signature
+            Represents the temporary data transfer container that is used to obtain a signature
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.ISignature.Id">
@@ -968,12 +987,15 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IStorageDataObject">
             <summary>
-            Represents the pilot-storage object with it's attributes and relations
+            Represents the pilot-storage object with it's attributes and relations.
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
+            Do not save a reference to this object in a plugin module, make a deep copy of the object's properties instead and store it in a
+            object that belongs to the plugins module. See the Ascon.Pilot.SDK.ObjectSample.DataObjectWrapper example.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IStorageDataObject.DataObject">
             <summary>
-            Get's data object
+            Get's a temporary data transfer container that represents the object
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IStorageDataObject.Path">
@@ -1052,6 +1074,13 @@
             </summary>
             <returns>The path of the pilot-storage root</returns>
         </member>
+        <member name="M:Ascon.Pilot.SDK.IStorageDataObjectProvider.GetStoragePath(System.Guid)">
+            <summary>
+            Gets a pilot-storage path of an object
+            </summary>
+            <param name="objId">object identifier</param>
+            <returns>Object filepath at Pilot-Storage. If object does not exist at Pilot-Storage, returns null</returns>
+        </member>
         <member name="M:Ascon.Pilot.SDK.IStorageDataObjectProvider.GetStorageItem(System.String)">
             <summary>
             Gets pilot-storage object that corresponds a file or folder
@@ -1061,7 +1090,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.ITaskMessage">
             <summary>
-            Represents a task message with it's attributes
+            Represents the temporary data transfer container that is used to obtain a task message and it's attributes
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.ITaskMessage.Id">
@@ -1409,7 +1439,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IType">
             <summary>
-            Represents the object's type with it's attributes and relations
+            Represents the temporary data transfer container that is used to obtain object's type, it's attributes and relations.
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IType.Id">
@@ -1548,7 +1579,7 @@
             The method is called just before the menu is shown 
             </summary>
             <param name="menuHost">The host object of associated menu</param>
-            <param name="selection">The list of selected objects the menu has been shown for</param>
+            <param name="selection">The list of temporary data transfer containers that represent selected objects the menu has been shown for</param>
             <param name="isContext"></param>
         </member>
         <member name="T:Ascon.Pilot.SDK.IStorageContextMenu">
@@ -1561,7 +1592,7 @@
             The method is called just before the menu is shown 
             </summary>
             <param name="menuHost">The host object of associated menu</param>
-            <param name="selection">The list of selected objects the menu has been shown for</param>
+            <param name="selection">The list of of temporary data transfer containers that represent selected objects the menu has been shown for</param>
         </member>
         <member name="T:Ascon.Pilot.SDK.ITaskContextMenu">
             <summary>
@@ -1573,7 +1604,7 @@
             The method is called just before the context menu is shown 
             </summary>
             <param name="menuHost">The host object of associated menu</param>
-            <param name="selection">The list of selected objects the menu has been shown for</param>
+            <param name="selection">The list of temporary data transfer containers that represent selected objects the menu has been shown for</param>
         </member>
         <member name="T:Ascon.Pilot.SDK.IMainMenu">
             <summary>
@@ -1606,6 +1637,15 @@
             <summary>
             Creates a new object
             </summary>
+            <param name="parent">Parent object</param>
+            <param name="type">Creating object type</param>
+            <returns>Fluent interface that enables you to modify created object</returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectModifier.Create(System.Guid,Ascon.Pilot.SDK.IDataObject,Ascon.Pilot.SDK.IType)">
+            <summary>
+            Creates a new object
+            </summary>
+            <param name="id">New object identifier</param>
             <param name="parent">Parent object</param>
             <param name="type">Creating object type</param>
             <returns>Fluent interface that enables you to modify created object</returns>
@@ -1704,7 +1744,7 @@
             <param name="positionId">Person position id</param>
             <param name="level">Access level</param>
             <param name="validThrough">Rights valid through</param>
-            <param name="isInherited">A flag indicating whether or not inherit rights</param>
+            <param name="isInheritable">A flag indicating whether or not inherit rights</param>
             <returns>Fluent interface that enables you to modify the associated object</returns>
         </member>
         <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveAccessRights(System.Int32)">
@@ -1777,6 +1817,20 @@
             <param name="snapshot">Selected files snapshot</param>
             <returns></returns>
         </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.AddSubscriber(System.Int32)">
+            <summary>
+            Subscribe to changes in the object
+            </summary>
+            <param name="personId">person ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectBuilder.RemoveSubscriber(System.Int32)">
+            <summary>
+            Unsubscribe to changes in the object
+            </summary>
+            <param name="personId">person ID</param>
+            <returns></returns>
+        </member>
         <member name="P:Ascon.Pilot.SDK.IObjectBuilder.DataObject">
             <summary>
             Gets the associated object
@@ -1824,7 +1878,8 @@
         </member>
         <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetCachedObject(System.Guid)">
             <summary>
-            Gets the object with specified identifier from cache. If object doesn't exist in cache, return blank(empty) object.
+            Gets the temporary data transfer container that represents a certain object with specified identifier from cache. 
+            If object doesn't exist in cache, return blank(empty) object.
             </summary>
             <remarks>This method does not download or update object.</remarks>
             <param name="id">Object identifier</param>
@@ -1832,7 +1887,7 @@
         </member>
         <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetRootObject">
             <summary>
-            Get the root object 
+            Get the temporary data transfer container that represents the root object 
             </summary>
             <returns>Get the root object</returns>
         </member>
@@ -1926,6 +1981,13 @@
             </summary>
             <returns>Pilot-storage root path</returns>
         </member>
+        <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetStoragePath(System.Guid)">
+            <summary>
+            Gets a pilot-storage path of an object
+            </summary>
+            <param name="objId">object identifier</param>
+            <returns>Object filepath at Pilot-Storage. If object does not exist at Pilot-Storage, returns null</returns>
+        </member>
         <member name="M:Ascon.Pilot.SDK.IObjectsRepository.GetStorageObjects(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Gets a set of pilot storage data objects by their absolute paths
@@ -1935,17 +1997,17 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.DataState">
             <summary>
-            
+            Loading state of a data object
             </summary>
         </member>
         <member name="F:Ascon.Pilot.SDK.DataState.Unknown">
             <summary>
-            default state
+            Default state, no information has been retrieved
             </summary>
         </member>
         <member name="F:Ascon.Pilot.SDK.DataState.NoData">
             <summary>
-            Object is not loaded
+            Object has not been previously cached and is being loading from the server
             </summary>
         </member>
         <member name="F:Ascon.Pilot.SDK.DataState.Loaded">
@@ -1955,12 +2017,12 @@
         </member>
         <member name="F:Ascon.Pilot.SDK.DataState.NonExistent">
             <summary>
-            Object not exists on a server
+            Object does not exist on a server
             </summary>
         </member>
         <member name="T:Ascon.Pilot.SDK.SynchronizationState">
             <summary>
-            
+            Modified data object syncronization state
             </summary>
         </member>
         <member name="F:Ascon.Pilot.SDK.SynchronizationState.Synchronized">
@@ -1970,7 +2032,7 @@
         </member>
         <member name="F:Ascon.Pilot.SDK.SynchronizationState.AwaitingForSynchronization">
             <summary>
-            Object is awaiting synchronization with a server
+            Object is awaiting for synchronization with a server
             </summary>
         </member>
         <member name="F:Ascon.Pilot.SDK.SynchronizationState.SynchronizationAborted">
@@ -1980,7 +2042,10 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IDataObject">
             <summary>
-            Represents the object with it's attributes and relations
+            Represents the temporary data transfer container that is used to obtain an object, it's attributes and relations
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
+            Do not save a reference to this object in a plugin module, make a deep copy of the object's properties instead and store it in a
+            object that belongs to the plugins module. See the Ascon.Pilot.SDK.ObjectSample.DataObjectWrapper example.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IDataObject.Id">
@@ -2090,7 +2155,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IOrganisationUnit">
             <summary>
-            Represents the organisation unit with it's attributes and relations
+            Represents the temporary data transfer container that is used to obtain a organisation unit with it's attributes and relations
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IOrganisationUnit.Id">
@@ -2120,7 +2186,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IPerson">
             <summary>
-            Represents the person with it's attributes and the positions he hold
+            Represents the temporary data transfer container that is used to obtain a person with it's attributes and the positions he hold
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IPerson.Id">
@@ -2190,7 +2257,10 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.ITaskObject">
             <summary>
-            Represents a task object with it's attributes
+            Represents the temporary data transfer container that is used to obtain a task and its attributes
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
+            Do not save a reference to this object in a plugin module, make a deep copy of the object's properties instead and store it in a
+            object that belongs to the plugins module. See the Ascon.Pilot.SDK.ObjectSample.DataObjectWrapper example.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.ITaskObject.Id">
@@ -2263,6 +2333,11 @@
             Task date of completion
             </summary>
         </member>
+        <member name="P:Ascon.Pilot.SDK.ITaskObject.DateOfStart">
+            <summary>
+            Task date of process start
+            </summary>
+        </member>
         <member name="P:Ascon.Pilot.SDK.ITaskObject.DisplayTitle">
             <summary>
             Task title to display
@@ -2311,7 +2386,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IWorkflowObject">
             <summary>
-            Represents the workflow with it's attributes
+            Represents the temporary data transfer container that is used to obtain a workflow and it's attributes.
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IWorkflowObject.Id">
@@ -2336,7 +2412,8 @@
         </member>
         <member name="T:Ascon.Pilot.SDK.IStageObject">
             <summary>
-            Represents the stage with it's attributes
+            Represents the temporary data transfer container that is used to obtain a stage with it's attributes.
+            Warning: the object behind this interface is automatically disposed in two minutes and its members invokation will couse an exception.
             </summary>
         </member>
         <member name="P:Ascon.Pilot.SDK.IStageObject.Id">
@@ -2467,6 +2544,16 @@
         <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DATE_OF_COMPLETION">
             <summary>
             Date of the task completion
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DATE_OF_START">
+            <summary>
+            Date of the task start
+            </summary>
+        </member>
+        <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.TASK_DATE_OF_REVOKATION">
+            <summary>
+            Date of the task revokation
             </summary>
         </member>
         <member name="F:Ascon.Pilot.SDK.SystemAttributeNames.EXTENSION_FOLDER_NAME">

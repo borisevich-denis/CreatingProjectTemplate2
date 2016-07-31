@@ -47,22 +47,17 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         public void BuildContextMenu(IMenuHost menuHost, IEnumerable<IDataObject> selection, bool isContext)
         {
-            var objects = selection.ToList();//+++
+            var objects = selection.ToList();
             if (objects.Count() == 1)
             {
-                //   var icon = IconLoader.GetIcon("/Resources/menu_icon.svg");//получение иконки
-
-                //  var itemNames = menuHost.GetItems().ToList();
-                //  const string indexItemName = "miShowSharingSettings";
-                //  var insertIndex = itemNames.IndexOf(indexItemName) + 1;
                 _selection = objects.FirstOrDefault();
-                var menu = menuHost.GetItems().ToList();//+++
-                byte[] SvgIcon = null;//+++
+                var menu = menuHost.GetItems().ToList();
+                byte[] SvgIcon = null;
                 if (menu.Exists(n => n == "miCreate"))
                 {
                     int index = 0;
-                    var menuSub = menuHost.GetItems("miCreate").ToList();//+++
-                    var m = menuHost;//+++
+                    var menuSub = menuHost.GetItems("miCreate").ToList();
+                    var m = menuHost;
                     if (menuSub.Exists(n => n == "miCreateSmartfoldertype"))
                     {
                         index = menuSub.IndexOf("miCreateSmartfoldertype") - 1;
@@ -71,9 +66,9 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                     if (objects[0].Type.IsMountable)
                     {
                         nameTypeProject = objects[0].Type.Name;
-                        menuHost.AddSubItem("miCreate", "ProjectTemplate", "Структура проекта по шаблону", objects[0].Type.SvgIcon, index);//нужно выделить хз как =)
+                        menuHost.AddSubItem("miCreate", "ProjectTemplate", "Структура проекта по шаблону", objects[0].Type.SvgIcon, index);
                     }
-                    else if (getProjectFolder(objects[0], ref SvgIcon)/*objects[0].Type.Name == "projectfolder"*/)
+                    else if (getProjectFolder(objects[0], ref SvgIcon))
                     {
                         nameTypeProjectFolder = objects[0].Type.Name;
                         menuHost.AddSubItem("miCreate", "ProjectFolderTemplate", "Проект на основе шаблона", SvgIcon, index);
@@ -86,7 +81,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             foreach (var i in _object.Type.Children)
             {
-                var _type = _repository.GetType(i);//+++
+                var _type = _repository.GetType(i);
                 if (_type.IsMountable)
                 {
                     nameTypeProject = _type.Name;
@@ -103,26 +98,23 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 if (itemName == ProjectFolderTemplate)
                 {
-                    var window = new PureWindow();//+++
-                    var _createProject = new CreateProject();//+++
-                   _createProject.DataContext= new TreeViewModel(_pilotDialogService, _tabServiceProvider, _repository, _selection, _modifier, _fileProvider, _personalSettings, nameTypeProjectFolder, nameTypeProject);//+++
-              
-                    //var window = new PureWindow { Content = _createProject };
+                    var window = new PureWindow();
+                    var _createProject = new CreateProject();
+                    _createProject.DataContext = new TreeViewModel(_pilotDialogService, _tabServiceProvider, _repository, _selection, _modifier, _fileProvider, _personalSettings, nameTypeProjectFolder, nameTypeProject);
                     window.Content = _createProject;
                     window.Title = "Мастер создания проекта по шаблону";
-                    window.Show();//+++
-                   
+                    window.Show();
+
                 }
 
                 if (itemName == ProjectTemplate)
                 {
                     var window = new PureWindow();
-                    var _createProject = new CreateProjectStructure();//+++
-                    _createProject.DataContext = new TreeViewModel(_pilotDialogService, _tabServiceProvider, _repository, _selection, _modifier, _fileProvider, _personalSettings, nameTypeProjectFolder, nameTypeProject);//+++
-                    //var window = new PureWindow { Content = _createProject };
+                    var _createProject = new CreateProjectStructure();
+                    _createProject.DataContext = new TreeViewModel(_pilotDialogService, _tabServiceProvider, _repository, _selection, _modifier, _fileProvider, _personalSettings, nameTypeProjectFolder, nameTypeProject);
                     window.Content = _createProject;
                     window.Title = "Мастер создания cтруктуры проекта по шаблону";
-                    window.Show();//+++
+                    window.Show();
                 }
             }
             catch (Exception)

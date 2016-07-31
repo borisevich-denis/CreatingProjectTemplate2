@@ -23,17 +23,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public ResultCreation()
         {
             InitializeComponent();
-            Loaded += ResultCreation_Loaded;
-            
-        }
-
-        void ResultCreation_Loaded(object sender, RoutedEventArgs e)
-        {
-           /* foreach (var rc in ((TreeViewModel)DataContext).resultCreation)
-            {
-                rbt.Items.Add(rc);  
-                
-            }       */    
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -45,8 +34,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         {
             ((ListBox)sender).ScrollIntoView(((ListBox)sender).SelectedItem);
         }
-
-       
 
     }
 }

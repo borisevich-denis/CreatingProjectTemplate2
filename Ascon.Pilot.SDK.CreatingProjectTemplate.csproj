@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,13 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ascon.Pilot.SDK, Version=16.0.19.25769, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ascon.Pilot.SDK, Version=16.0.23.26115, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Ascon.Pilot.SDK.16.0.19.0-unstable\lib\net40-Client\Ascon.Pilot.SDK.dll</HintPath>
+      <HintPath>packages\Ascon.Pilot.SDK.16.0.23.0\lib\net40-Client\Ascon.Pilot.SDK.dll</HintPath>
     </Reference>
-    <Reference Include="Ascon.Pilot.Theme, Version=16.0.19.25769, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ascon.Pilot.Theme, Version=16.0.23.26115, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Ascon.Pilot.SDK.16.0.19.0-unstable\lib\net40-Client\Ascon.Pilot.Theme.dll</HintPath>
+      <HintPath>packages\Ascon.Pilot.SDK.16.0.23.0\lib\net40-Client\Ascon.Pilot.Theme.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -80,9 +80,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Catalog.xaml.cs">
-      <DependentUpon>Catalog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ContextMenu.cs" />
     <Compile Include="CreateProjectStructure.xaml.cs">
       <DependentUpon>CreateProjectStructure.xaml</DependentUpon>
@@ -93,7 +90,6 @@
     <Compile Include="DelegateCommand\IActiveAware.cs" />
     <Compile Include="DelegateCommand\IRaiseCanExecuteChanged.cs" />
     <Compile Include="DelegateCommand\WeakEventHandlerManager.Desktop.cs" />
-    <Compile Include="ElementCatalogModel.cs" />
     <Compile Include="ElementNodeViewModel.cs" />
     <Compile Include="ItemComboBox.cs" />
     <Compile Include="ObjectLoader.cs" />
@@ -130,10 +126,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Catalog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CreateProjectStructure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

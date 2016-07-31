@@ -23,10 +23,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public StageTwo()
         {
             InitializeComponent();
-           
         }
-
-
 
         private void button1_Click()
         {
@@ -36,7 +33,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 Elem.Check = true;
                 CheckTree(Elem.ChildNodes, true);
             }
-
         }
         private void CheckTree(ObservableCollection<ElementNodeViewModel> Tree, bool b)
         {
@@ -57,11 +53,11 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
-        private void button3_Click()//false
+        private void button3_Click()
         {
             var viewModel = (TreeViewModel)DataContext;
             foreach (var Elem in viewModel.TreeStorage)
-            {                
+            {
                 if (Elem.TypeObj == "File")
                 {
                     Elem.Check = false;
@@ -70,7 +66,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             }
         }
 
-        private void button4_Click()//true
+        private void button4_Click()
         {
             var viewModel = (TreeViewModel)DataContext;
             foreach (var Elem in viewModel.TreeStorage)
@@ -91,13 +87,9 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 {
                     Elem.Check = b;
                 }
-                CheckTreeFile(Elem.ChildNodes, b,s);
+                CheckTreeFile(Elem.ChildNodes, b, s);
             }
         }
-
-       
-
-   
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
@@ -133,7 +125,5 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             button4_Click();
         }
 
-        
-        
     }
 }

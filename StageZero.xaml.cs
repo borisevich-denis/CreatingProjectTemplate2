@@ -24,35 +24,18 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         public StageZero()
         {
             InitializeComponent();
-        }       
+        }
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-           // var s1 = ((PureWindow)((UserControl)((Grid)((TabControl)((TabItem)((UserControl)((Grid)((TreeView)sender).Parent).Parent).Parent).Parent).Parent).Parent).Parent);
             TreeViewModel s = null;
+            s = ((TreeViewModel)DataContext);
 
-             s = ((TreeViewModel)DataContext);
-            //else if (s1.Content is CreateProjectStructure) s = ((TreeViewModel)((CreateProjectStructure)s1.Content).DataContext);
-
-            var selectedObject = TreeView.SelectedValue as ElementNodeViewModel;//+++
+            var selectedObject = TreeView.SelectedValue as ElementNodeViewModel;
             if (selectedObject.TypeObj == s.NameTypeProject)
             {
-                
-
                 s.Select = selectedObject;
                 s.TitleSelect = selectedObject.DisplayName;
-              /*  foreach (var obj in ((Grid)((TabControl)((TabItem)((UserControl)((Grid)((TreeView)sender).Parent).Parent).Parent).Parent).Parent).Children)
-                {
-                    if (obj.GetType().Name == "TextBlock")
-                        if (((TextBlock)obj).Name == "textBlock2")
-                        {
-                            ((TextBlock)obj).Text = selectedObject.DisplayName;
-                        }
-                        else if (((TextBlock)obj).Name == "textBlock")
-                        {
-                            ((TextBlock)obj).Visibility = Visibility.Visible;
-                        }
-                }*/
             }
         }
 
@@ -72,7 +55,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 tProj.IsExpanded = true;
             }
-        } 
+        }
     }
-    
+
 }

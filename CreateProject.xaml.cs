@@ -22,15 +22,10 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
     /// </summary>
     public partial class CreateProject : UserControl
     {
-        //private IEnumerable<IDataObject> _selection;
-        //public PureWindow _win;
-        //private string nameTypeProject;
 
-        public CreateProject(/*string _nameTypeProject*/)
+        public CreateProject()
         {
-            //_selection = selection;
             InitializeComponent();
-           
         }
 
         private void next_Click(object sender, RoutedEventArgs e)
@@ -39,30 +34,18 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 if (TC1.Items.Count - 1 == TC1.SelectedIndex)
                 {
-                    // создание
-
                     var s = (TreeViewModel)DataContext;
-                    //DialogWindow dw = new DialogWindow();//+++
-                   // dw.Title = "Создание структуры проекта";
-                   // dw.Content = new StageCreate() { DataContext = s };//+++
-                   // dw.Show();
                     ((PureWindow)Parent).Content = new StageCreate() { DataContext = s };
                     s.CreateUpProject(false);
-                   // ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
-                 //   ((PureWindow)Parent).Close();
-                  //  ((TreeViewModel)DataContext).Dispose();
-
                 }
 
                 if (TC1.Items.Count - 1 > TC1.SelectedIndex)
                 {
                     TC1.SelectedIndex += 1;
-
                 }
                 if (TC1.Items.Count - 1 == TC1.SelectedIndex)
                 {
                     next.Content = "Создать проект";
-                    //  ImageNext.Visibility = System.Windows.Visibility.Collapsed;
                     CreateHidden.Visibility = System.Windows.Visibility.Visible;
 
                     if (((TreeViewModel)DataContext).AllObligatoryAttr(((TreeViewModel)DataContext).AttributesNewProject))
@@ -70,9 +53,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                         ((TreeViewModel)DataContext).getAllAttributes = true;
                     }
                     else ((TreeViewModel)DataContext).getAllAttributes = false;
-                    //   ((TreeViewModel)DataContext).getAllAttributes = false;
-                    //  next.IsEnabled = false;
-                    //   back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 105, 10);
                 }
                 if (TC1.SelectedIndex > 0)
                 {
@@ -95,18 +75,12 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             {
                 next.Content = "Далее >";
                 CreateHidden.Visibility = System.Windows.Visibility.Hidden;
-                //  ImageNext.Visibility = System.Windows.Visibility.Visible;
                 ((TreeViewModel)DataContext).getAllAttributes = true;
-                //next.IsEnabled = true;
-                // next.Content = "Далее";
-                //     back.Margin = new Thickness(0, 0, next.Margin.Right + 5 + 75, 10);
             }
             if (TC1.SelectedIndex == 0)
             {
                 back.IsEnabled = false;
                 back.Visibility = Visibility.Hidden;
-
-                // tblock.Text = "Добро пожаловать в мастер создания проекта по шаблону";
             }
 
         }
@@ -130,16 +104,12 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             else if (TC1.SelectedIndex == 3)
             {
                 textBlock1.Text = "Шаг 4 из 4. Заполните атрибутную карточку нового проекта";
-                //textBlock2.Visibility = Visibility.Collapsed;
-                //textBlock.Visibility = Visibility.Collapsed;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //((TreeViewModel)DataContext).Dispose();
-                ((PureWindow)Parent).Close();
-         //   ((PureWindow)((UserControl)((Grid)((StackPanel)((Button)sender).Parent).Parent).Parent).Parent).Close();
+            ((PureWindow)Parent).Close();
         }
 
         private void CreateHidden_Click(object sender, RoutedEventArgs e)
@@ -149,8 +119,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
             if (s.CreateUpProject(false))
             {
-
-                DialogWindow dw = new DialogWindow();//+++
+                DialogWindow dw = new DialogWindow();
                 dw.Title = "Создание структуры проекта завершено";
                 dw.Content = new ResultCreation() { DataContext = s };
                 dw.Show();
@@ -158,10 +127,6 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                 ((PureWindow)Parent).Close();
             }
             else MessageBox.Show("Заполнены не все обязательные атрибуты");
-
-
         }
-
-
     }
 }
