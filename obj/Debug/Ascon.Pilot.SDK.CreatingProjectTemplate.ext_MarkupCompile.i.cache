@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\
+C:\Users\borisevich\Desktop\CreatingProjectTemplate\obj\Debug\
 Ascon.Pilot.SDK.CreatingProjectTemplate
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 8793986391
 
-25-794379594
-24-101830614
+25-1467363247
+2478805396
 CreateProjectStructure.xaml;ResultCreation.xaml;StageCreate.xaml;StageOne.xaml;StageTwo.xaml;StageThree.xaml;CreateProject.xaml;StageZero.xaml;
 
 False

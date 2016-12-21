@@ -42,6 +42,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             _fileProvider = fileProvider;
             var accentColor = (Color)ColorConverter.ConvertFromString(pilotDialogService.AccentColor);
             ColorScheme.Initialize(accentColor);
+            
         }
 
 

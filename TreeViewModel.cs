@@ -62,6 +62,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private int _indexCreate;
         private int _countCreate;
 
+        private IEnumerable<IPerson> People;
+
         private Dictionary<string, object> attributes = new Dictionary<string, object>();
 
         public TreeViewModel(IPilotDialogService pilotDialogService, ITabServiceProvider tabServiceProvider, IObjectsRepository repository, IDataObject selection, IObjectModifier modifier, IFileProvider fileProvider, IPersonalSettings personalSettings, string _nameTypeProjectFolder, string _nameTypeProject)
@@ -85,6 +87,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             _parent = selection;
             CreateHidden = false;
             _currentPerson = repository.GetCurrentPerson();
+            People = repository.GetPeople();
             CopyAccessObj = true;
             CopyAccessStorage = true;
             loader = new ObjectLoader(_repository);
@@ -498,6 +501,55 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             return _pilotDialogService.ShowReferenceBookDialog(config);
         }
 
+        public string openDialog()
+        {
+            return ResultCatalog(_pilotDialogService.ShowPositionSelectorDialog());
+        }
+        private string ResultCatalog(IEnumerable<IOrganisationUnit> _itemsCatalog)
+        {
+            var AttrItems = "";
+            foreach (var itemCatalog in _itemsCatalog)
+            {
+                if (AttrItems.Length > 0)
+                {
+                    AttrItems += "; ";
+                }
+                if (!itemCatalog.IsPosition)
+                {
+                    AttrItems += getPeople(itemCatalog);
+                }
+                else                 if (People.ToList().Exists(n => n.Positions.ToList().Exists(x => x.Position == itemCatalog.Id)))
+                {
+                    var p = People.ToList().Find(n => n.Positions.ToList().Exists(x => x.Position == itemCatalog.Id));
+                    AttrItems += p.DisplayName;
+                }
+            }
+            return AttrItems;
+        }
+
+        private string getPeople(IOrganisationUnit _itemsCatalog)
+        {
+            var AttrItems = "";            
+            foreach (var childId in _itemsCatalog.Children)
+            {
+                if (AttrItems.Length > 0)
+                {
+                    AttrItems += "; ";
+                }
+               var p= _repository.GetOrganisationUnit(childId);
+               if (!p.IsPosition)
+               {
+                   AttrItems += getPeople(p);
+               }
+               else if (People.ToList().Exists(n => n.Positions.ToList().Exists(x => x.Position == p.Id)))
+               {
+                   var people = People.ToList().Find(n => n.Positions.ToList().Exists(x => x.Position == p.Id));
+                   AttrItems += people.DisplayName;
+               }
+            }
+
+            return AttrItems;
+        }
 
         public List<ItemCB> GetItemsCB(string attr, string key, ref int i)
         {

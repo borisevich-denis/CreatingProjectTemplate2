@@ -57,45 +57,47 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
         private void AddItemsGrid()
         {
             grid.Children.Clear();
-            for (var ii = 1; ii < AttributeProject.ToList().Count + 1; ii++)
-            {
-                var x = AttributeProject.ToList().FindIndex(n => n.DisplaySortOrder == ii);
-                if (x > -1)
-                {
-                    var i = content.FindIndex(n => n.name == AttributeProject.ToList()[x].Name);
-                    if (i > -1)
-                    {
-                        grid.Children.Add(content[i].Title);
-                        if (content[i].combobox != null)
-                        {
-                            content[i].combobox.SelectionChanged += SelectionChanged;
-                            content[i].combobox.DropDownOpened += combobox_DropDownOpened;
-                            grid.Children.Add(content[i].combobox);
-                        }
-                        else if (content[i].button != null)
-                        {
-                            content[i].textBox.TextChanged += TextChanged;
-                            content[i].button.Click += OpenDialog;
-                            var st = new Grid() { Margin = new Thickness(0, 0, 0, 10) };
-                            st.Children.Add(content[i].textBox);
-                            st.Children.Add(content[i].button);
-                            grid.Children.Add(st);
+            var attrProject = new List<IAttribute>(AttributeProject.ToList().OrderBy(n => n.DisplaySortOrder));
 
-                        }
-                        else if (content[i].textBox != null)
-                        {
-                            content[i].textBox.TextChanged += TextChanged;
-                            grid.Children.Add(content[i].textBox);
-                        }
-                        else if (content[i].BEdit != null)
-                        {
-                            grid.Children.Add(content[i].BEdit);
-                        }
-                        else if (content[i].Date != null)
-                        {
-                            grid.Children.Add(content[i].Date);
-                        }
+            for (var ii = 0; ii < attrProject.ToList().Count; ii++)
+            {
+                /*var x = AttributeProject.ToList().FindIndex(n => n.DisplaySortOrder == ii);
+                if (x > -1)
+                {*/
+                var i = content.FindIndex(n => n.name == attrProject.ToList()[ii].Name);
+                if (i > -1)
+                {
+                    grid.Children.Add(content[i].Title);
+                    if (content[i].combobox != null)
+                    {
+                        content[i].combobox.SelectionChanged += SelectionChanged;
+                        content[i].combobox.DropDownOpened += combobox_DropDownOpened;
+                        grid.Children.Add(content[i].combobox);
                     }
+                    else if (content[i].button != null)
+                    {
+                        content[i].textBox.TextChanged += TextChanged;
+                        content[i].button.Click += OpenDialog;
+                        var st = new Grid() { Margin = new Thickness(0, 0, 0, 10) };
+                        st.Children.Add(content[i].textBox);
+                        st.Children.Add(content[i].button);
+                        grid.Children.Add(st);
+
+                    }
+                    else if (content[i].textBox != null)
+                    {
+                        content[i].textBox.TextChanged += TextChanged;
+                        grid.Children.Add(content[i].textBox);
+                    }
+                    else if (content[i].BEdit != null)
+                    {
+                        grid.Children.Add(content[i].BEdit);
+                    }
+                    else if (content[i].Date != null)
+                    {
+                        grid.Children.Add(content[i].Date);
+                    }
+                    //   }
                 }
             }
         }
@@ -271,8 +273,8 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
                                     {
                                         content[content.Count - 1].Key = GetConfig(config, "Source");
                                         content[content.Count - 1].Attr = GetConfig(config, "StringFormat");
-                                        content[content.Count - 1].combobox = new ComboBox() { Margin = new Thickness(0, 0, 0, 10), IsSynchronizedWithCurrentItem = true };
-                                        //if (config.IndexOf("IsEditable=\"True\"") > -1) content[content.Count - 1].combobox.IsEditable = true;
+                                        content[content.Count - 1].combobox = new ComboBox() { Margin = new Thickness(0, 0, 0, 10), IsSynchronizedWithCurrentItem = true };                                        
+                                        if (config.IndexOf("IsEditable=\"True\"") > -1) content[content.Count - 1].combobox.IsEditable = true;
                                     }
                                     if (config.IndexOf("Enum") > -1)
                                     {
@@ -349,12 +351,18 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
 
         private string GetConfig(string config, string pName)
         {
-            var _config = config.Remove(0, config.IndexOf(pName));
-            var i = _config.IndexOf("\"");
-            _config = _config.Remove(0, i + 1);
-            i = _config.IndexOf("\"");
-            _config = _config.Remove(i);
-            return _config;
+            if (config.IndexOf(pName) >= 0)
+            {
+                var _config = config.Remove(0, config.IndexOf(pName));
+                var i = _config.IndexOf("\"");
+                _config = _config.Remove(0, i + 1);
+                i = _config.IndexOf("\"");
+                _config = _config.Remove(i);
+                return _config;
+            }
+
+            if (config.IndexOf("Attr Kind=\"OrgUnit\"") >= 0) { return "OrgUnit"; }
+            return "";
         }
         private void grid_Loaded(object sender, RoutedEventArgs e)
         {
@@ -397,6 +405,7 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             return AttrItems;
         }
 
+       
 
         private List<string> attrToList(string attr)
         {
@@ -417,34 +426,40 @@ namespace Ascon.Pilot.SDK.CreatingProjectTemplate
             if (content.ToList().Exists(n => n.button == sender))
             {
                 var i = content.ToList().FindIndex(n => n.button == sender);
-                var objItems = ((TreeViewModel)DataContext).openDialog(content[i].Config);
-                if (objItems.ToList().Count > 0)
+                if (content[i].Key == "OrgUnit")
                 {
-                    content[i].textBox.Text = ResultCatalog(objItems, attrToList(content[i].Attr));
-                    foreach (var a in objItems.ToList()[0].Attributes)
+                   content[i].textBox.Text = ((TreeViewModel)DataContext).openDialog();                    
+                }
+                else
+                {
+                    var objItems = ((TreeViewModel)DataContext).openDialog(content[i].Config);
+                    if (objItems.ToList().Count > 0)
                     {
-                        if (content.Exists(x => x.name == a.Key))
+                        content[i].textBox.Text = ResultCatalog(objItems, attrToList(content[i].Attr));
+                        foreach (var a in objItems.ToList()[0].Attributes)
                         {
-                            var z = content.FindIndex(x => x.name == a.Key);
-                            if (i != z)
+                            if (content.Exists(x => x.name == a.Key))
                             {
-                                if (content[z].combobox != null)
+                                var z = content.FindIndex(x => x.name == a.Key);
+                                if (i != z)
                                 {
-                                    content[z].combobox.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
-                                }
-                                else if (content[z].textBox != null)
-                                {
-                                    content[z].textBox.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
-                                }
-                                else if (content[z].BEdit != null)
-                                {
-                                    content[z].BEdit.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
+                                    if (content[z].combobox != null)
+                                    {
+                                        content[z].combobox.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
+                                    }
+                                    else if (content[z].textBox != null)
+                                    {
+                                        content[z].textBox.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
+                                    }
+                                    else if (content[z].BEdit != null)
+                                    {
+                                        content[z].BEdit.Text = ResultCatalog(objItems, new List<string>() { a.Key.ToString() });
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
                 return;
             }
         }

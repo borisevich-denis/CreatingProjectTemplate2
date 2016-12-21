@@ -133,3 +133,33 @@ C:\Users\loodsman\Desktop\CreatingProjectTemplate2-master\CreatingProjectTemplat
 C:\Users\loodsman\Desktop\CreatingProjectTemplate2-master\CreatingProjectTemplate2-master\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.resources
 C:\Users\loodsman\Desktop\CreatingProjectTemplate2-master\CreatingProjectTemplate2-master\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csproj.GenerateResource.Cache
 C:\Users\loodsman\Desktop\CreatingProjectTemplate2-master\CreatingProjectTemplate2-master\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
+C:\Users\Денис\Desktop\Ascon.Pilot.SDK.CreatingProjectTemplate\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csprojResolveAssemblyReference.cache
+C:\Users\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
+C:\Users\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csprojResolveAssemblyReference.cache
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageCreate.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageThree.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\CreateProjectStructure.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\ResultCreation.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageCreate.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageOne.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageTwo.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageThree.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\CreateProject.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageZero.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext_MarkupCompile.cache
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext_MarkupCompile.lref
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\CreateProjectStructure.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\ResultCreation.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageOne.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageTwo.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\CreateProject.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\StageZero.baml
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.g.resources
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.Properties.Resources.resources
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.csproj.GenerateResource.Cache
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
+C:\Users\loodsman.ASCON-ENISEY\Desktop\CreatingProjectTemplate\obj\Debug\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
+C:\Users\loodsman.ASCON-ENISEY\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.dll
+C:\Users\loodsman.ASCON-ENISEY\AppData\Local\ASCON\Pilot-ICE Enterprise\Development\Ascon.Pilot.SDK.CreatingProjectTemplate.ext.pdb
